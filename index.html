@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Space Retreat · Чешме · семь дней, семь закладок</title>
+<meta name="description" content="Программа недели Signal / Noise в Чешме, 9–15 ноября 2026: расписание дней, варианты, рынки, карты и закладки.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Space Retreat · Чешме · семь дней, семь закладок">
+<meta property="og:description" content="Расписание дней, варианты, рынки, карты и закладки недели Signal / Noise.">
+<meta property="og:image" content="https://hanno4ka777.github.io/cesme-2026/img/farm.jpg">
+<meta property="og:url" content="https://hanno4ka777.github.io/cesme-2026/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23111F1A'/%3E%3Ccircle cx='50' cy='30' r='12' fill='%23D9C3A3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* The Space Retreat: бумага, тёмная хвоя, океан, лишайник, песок — как на thespaceretreat.com */
+  --bg:#E7E2D7; --paper:#F4F0E7; --line:#CFC8B9; --ink:#111F1A; --muted:#55625C;
+  --accent:#304D48; --warm:#8C6C4B; --warm-ink:#8C6C4B; --mist:#8F9E91; --sand:#B99A78; --glade:#D9C3A3; --thicket:#111F1A; --dark2:#0A1713;
+  --display:"Iowan Old Style","Source Serif 4",Baskerville,"Times New Roman",serif;
+  --body:"Avenir Next","Mulish","Helvetica Neue",Arial,sans-serif;
+  --mono:"Avenir Next","Mulish","Helvetica Neue",Arial,sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:300}
+p{margin:0}
+.eyebrow{font-family:var(--body);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mono{font-family:var(--mono);font-size:13px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+nav.top{position:sticky;top:0;z-index:30;background:rgba(10,23,19,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:22px;align-items:center;min-height:56px;overflow-x:auto;white-space:nowrap}
+nav.top .brand{font-family:var(--display);font-size:20px;font-weight:600;margin-right:auto;color:var(--ink);text-decoration:none}
+nav.top a.l{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#8F9E91;text-decoration:none;padding:12px 0}
+nav.top a.l:hover{color:#F4F0E7}
+
+.hero{padding:48px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:end}
+.hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .lead{font-size:18px;color:var(--muted);margin-top:20px;max-width:540px}
+.hero img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:0;display:block}
+.hero figcaption{font-size:12px;color:var(--muted);margin-top:8px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:36px;border-top:1px solid var(--line)}
+.facts div{padding:14px 14px 0 0}
+.facts b{display:block;font-family:var(--display);font-size:26px;font-weight:400}
+.facts span{font-size:13px;color:var(--muted)}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.facts{grid-template-columns:repeat(2,1fr)}}
+
+/* лента недели */
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
+@media (max-width:900px){.strip{grid-template-columns:repeat(7,minmax(118px,1fr));overflow-x:auto;padding-bottom:8px}}
+.chip-day{display:flex;flex-direction:column;gap:6px;padding:12px;border:1px solid var(--line);border-radius:0;background:var(--paper);text-decoration:none;color:var(--ink);position:relative;min-height:168px}
+.chip-day:hover{border-color:var(--accent)}
+.chip-day.today{border-color:var(--thicket);box-shadow:inset 0 -4px 0 var(--glade)}
+.chip-day .w{font-family:var(--display);font-size:19px;line-height:1.15}
+.chip-day .th{width:26px;height:auto;display:block;box-shadow:0 4px 10px -6px rgba(10,23,19,.6)}
+.chip-day .d{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.chip-day .wx{margin-top:auto;font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+.load{display:flex;gap:3px}
+.load i{width:14px;height:5px;border-radius:0;background:var(--line)}
+.load i.on{background:var(--warm)}
+.frame{position:relative;margin:0;padding:14px 14px 40px}
+.frame img{border-radius:0}
+.frame svg.fr{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.frame figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--warm);margin:0}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#F4F0E7;margin-right:auto}
+.logo b{font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.24em;line-height:1}
+.logo small{display:block;font-size:9px;letter-spacing:.24em;color:#8F9E91;margin-top:5px;font-weight:600}
+.maps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.today-tag{position:absolute;top:-9px;right:10px;font-size:10px;letter-spacing:.12em;font-weight:700;color:var(--glade);background:var(--thicket);padding:2px 6px;border-radius:0}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+.sec-head h2{font-size:clamp(30px,3.8vw,46px);line-height:1.08}
+.sec-head p{max-width:560px;color:var(--muted)}
+
+/* блок дня */
+.day{background:var(--paper);border:1px solid var(--line);border-radius:0;padding:28px;margin-bottom:28px;scroll-margin-top:72px}
+.day-head{display:grid;grid-template-columns:112px 1fr;grid-template-areas:"bm txt" "bm tl";column-gap:32px;align-items:start}
+.bmimg{grid-area:bm;width:112px;height:auto;display:block;box-shadow:0 14px 26px -18px rgba(10,23,19,.7)}
+.dh-txt{grid-area:txt}
+.day-head .tlwrap{grid-area:tl}
+.dh-top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.sign{width:44px;height:158px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10px 0;flex:none;box-shadow:0 1px 0 rgba(10,23,19,.15)}
+.sign .no{font-family:var(--mono);font-size:10px}
+.sign svg{width:30px;height:30px}
+.day-head h3{font-size:48px;line-height:1.02;margin-top:6px}
+.day-head .idea{font-family:var(--display);font-style:italic;font-weight:300;font-size:21px;line-height:1.35;color:#33433D;margin-top:10px;max-width:640px}
+.qday{margin-top:12px;display:flex;gap:12px;align-items:baseline;max-width:680px}
+.qday span{font-size:10px;letter-spacing:.2em;font-weight:700;color:#8C6C4B;white-space:nowrap}
+.qday b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.3}
+.wxbox{display:flex;flex-direction:column;align-items:flex-end;gap:4px;text-align:right}
+.wxbox b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1}
+.wxbox span{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:0}
+.pill.hunt{background:#D9C3A3;color:#111F1A}
+.pill.ok{background:#DCD6C8;color:#33433D}
+@media (max-width:760px){.day{padding:18px}.day-head{grid-template-columns:72px 1fr;grid-template-areas:"bm txt" "tl tl";column-gap:16px}.bmimg{width:72px}.day-head h3{font-size:32px}.day-head .idea{font-size:17px}.qday{flex-direction:column;gap:4px}.qday b{font-size:17px}.wxbox{align-items:flex-start;text-align:left;flex-direction:row;gap:12px;flex-wrap:wrap;margin-top:12px}}
+
+/* шкала дня */
+.timeline{margin:30px 0 6px;position:relative}
+.tl-track{position:relative;height:38px;border-radius:0;background:var(--bg);overflow:hidden}
+.tl-night{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(135deg,rgba(17,31,26,.08) 0 6px,transparent 6px 12px)}
+.tl-seg{position:absolute;top:5px;bottom:5px;border-radius:0}
+.tl-seg.practice{background:var(--thicket)}
+.tl-seg.nature{background:#8F9E91}
+.tl-seg.road{background:#C4BCAB}
+.tl-seg.food{background:#D9C3A3}
+.tl-seg.rest{background:#DCD6C8;box-shadow:inset 0 0 0 1px #C4BCAB}
+.tl-seg.focus{outline:2px solid var(--ink);outline-offset:1px}
+.tl-sun{position:absolute;top:-6px;height:50px;width:2px;background:#8C6C4B}
+.tl-sun span{position:absolute;top:-18px;left:-34px;font-family:var(--mono);font-size:11px;color:var(--warm-ink);white-space:nowrap}
+.tl-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:8px;border-radius:0;margin-right:5px;vertical-align:0}
+
+.day-body{display:grid;grid-template-columns:1fr 340px;gap:28px;margin-top:20px;align-items:start}
+@media (max-width:960px){.day-body{grid-template-columns:1fr}}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--muted);font:inherit;font-size:14px;font-weight:600;padding:9px 14px;border-radius:0;cursor:pointer;min-height:44px}
+.tabs button[aria-selected="true"]{background:var(--thicket);border-color:var(--thicket);color:#F4F0E7}
+.tabs button .rec{font-size:10px;letter-spacing:.1em;margin-left:8px;color:var(--glade);font-family:var(--mono)}
+.tabs button[aria-selected="false"] .rec{color:var(--warm)}
+.scn-note{font-size:14px;color:var(--muted);margin-bottom:10px}
+.acts{border-top:1px solid var(--ink)}
+.act{display:grid;grid-template-columns:62px 1fr auto;gap:14px;padding:12px 6px;border-bottom:1px solid var(--line);cursor:default}
+.act:hover{background:var(--bg)}
+.act .t{font-family:var(--mono);font-size:13px;color:var(--warm-ink);padding-top:2px}
+.act h4{font-family:var(--body);font-size:15.5px;font-weight:600;line-height:1.35}
+.act p{font-size:14px;color:var(--muted);margin-top:2px}
+.act .meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.act .dur{color:var(--ink);font-weight:500}
+.act.sunset{background:linear-gradient(90deg,#D9C3A3 0 4px,transparent 4px)}
+.act.key h4{color:var(--ink);text-decoration:underline;text-decoration-color:#D9C3A3;text-decoration-thickness:3px;text-underline-offset:4px}
+
+.side{display:flex;flex-direction:column;gap:14px}
+.box{background:var(--bg);border-radius:0;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.box h5{margin:0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.box .big{font-family:var(--display);font-size:20px;line-height:1.2}
+.box ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.box li{font-size:14px;line-height:1.4;display:grid;grid-template-columns:1fr auto;gap:10px}
+.box li small{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+.box .row2{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.box.dark{background:var(--thicket);color:#F4F0E7}
+.box.dark .big{color:#F4F0E7}
+.box.dark h5{color:var(--glade)}
+.box.dark a{color:#fff}
+
+.map{margin:4px 0 16px;border:1px solid var(--line);background:var(--paper)}
+.map-svg svg{display:block;width:100%;height:auto;aspect-ratio:1.8}
+.route.draw{stroke-dasharray:100;stroke-dashoffset:100;animation:drawroute 2.4s ease forwards}
+@keyframes drawroute{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.route.draw{animation:none;stroke-dashoffset:0}}
+.stop.on circle{fill:#D9C3A3}
+.map-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px;border-top:1px solid var(--line)}
+.gobtn{background:var(--thicket);color:#F4F0E7!important;text-decoration:none;font-size:14px;font-weight:600;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center}
+.gobtn:hover{background:var(--accent)}
+.ghostbtn{appearance:none;border:1px solid var(--thicket);background:transparent;color:var(--thicket);font:inherit;font-size:14px;font-weight:600;padding:10px 14px;min-height:44px;cursor:pointer}
+.mapnote{font-size:12px;color:var(--muted);flex:1;min-width:200px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}
+.stopchip{font-size:13px;text-decoration:none;color:var(--ink);border:1px solid var(--line);padding:6px 10px;background:var(--bg)}
+.stopchip b{font-family:var(--mono);font-weight:500}
+.stopchip.eat{color:var(--warm)}
+.stopchip:hover{border-color:var(--thicket)}
+.obscura{background:#0A1713;color:#F4F0E7;position:relative;overflow:hidden;padding:84px 0 72px}
+.obscura .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.55)}
+.obscura:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,23,19,.94) 0%,rgba(10,23,19,.78) 48%,rgba(10,23,19,.35) 100%)}
+.ob-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.obscura h1{font-size:clamp(46px,6.2vw,84px);line-height:1.02;margin-top:22px;color:#F4F0E7}
+.obscura h1 em{color:#D9C3A3}
+.obscura .lead{font-size:17px;line-height:1.65;color:#C3CBC4;margin-top:24px;max-width:500px;font-weight:400}
+.ob-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.ob-cta a{color:#F4F0E7;text-decoration:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;border:1px solid rgba(244,240,231,.45);padding:13px 18px;min-height:44px;display:inline-flex;align-items:center}
+.ob-cta a:hover{background:#F4F0E7;color:#111F1A}
+.fan{display:flex;gap:10px;justify-content:center;align-items:flex-start}
+.fan a{flex:0 1 76px;display:block;transition:transform .35s ease}
+.fan a:nth-child(odd){margin-top:26px}
+.fan a:hover{transform:translateY(-8px)}
+.fan img{width:100%;height:auto;display:block;box-shadow:0 18px 30px -18px rgba(0,0,0,.8)}
+@media (max-width:860px){.ob-grid{grid-template-columns:1fr}.fan{justify-content:flex-start;overflow-x:auto;padding-bottom:6px}.fan a{flex:0 0 64px}.obscura{padding:56px 0 48px}}
+/* закладки 50×180 */
+.marks{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:14px;align-items:start}
+@media (max-width:1000px){.marks{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:560px){.marks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bmk{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink)}
+.bmk img{width:100%;height:auto;display:block;box-shadow:0 18px 30px -20px rgba(10,23,19,.75);transition:transform .3s ease}
+.bmk:hover img{transform:translateY(-6px)}
+.bmk span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+@media (max-width:560px){.marks{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:10px}.bmk{flex:0 0 44vw;scroll-snap-align:start}}
+/* баня */
+.baths{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:6px}
+.bath{border:1px solid var(--line);border-radius:0;padding:14px;background:var(--paper);display:flex;flex-direction:column;gap:6px;font-size:14px}
+.bath.pick{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.bath b{font-family:var(--display);font-weight:400;font-size:20px;line-height:1.2}
+
+
+.memo{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:860px){.memo{grid-template-columns:1fr}}
+.memo .box{background:var(--paper);border:1px solid var(--line)}
+footer{padding:40px 0 64px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer ul{columns:2;column-gap:32px;padding-left:18px}
+@media (max-width:760px){footer ul{columns:1}}
+footer li{margin-bottom:6px;break-inside:avoid}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="Разделы">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="The Space, наверх"><svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#F4F0E7"/><circle cx="50" cy="30" r="9" fill="#D9C3A3"/><circle cx="50" cy="30" r="9" fill="none" stroke="#111F1A" stroke-width="3"/></svg><span><b>THE SPACE RETREAT</b><small>ÇEŞME · SIGNAL / NOISE</small></span></a>
+    <a class="l" href="#week">Неделя</a>
+    <a class="l" href="#days">Дни</a>
+    <a class="l" href="#markets">Рынки</a>
+    <a class="l" href="#maps">Карты</a>
+    <a class="l" href="#marks">Закладки</a>
+    <a class="l" href="#memo">Памятка</a>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="obscura">
+    <img class="bgimg" src="img/farm.jpg" alt="" aria-hidden="true">
+    <div class="wrap ob-grid">
+      <div class="ob-text">
+        <div class="eyebrow" style="color:#8F9E91">Çeşme · Signal / Noise · 9–15 ноября 2026</div>
+        <h1>Семь дней.<br><em>Семь закладок.</em></h1>
+        <p class="lead">Каждое утро — одна закладка: тема, мысль и вопрос дня. Здесь вся неделя: расписание и варианты на выбор, сколько что занимает, рынок дня, карта движения и где поесть.</p>
+        <div class="ob-cta"><a href="#days">Расписание дней ↓</a><a href="#marks">Закладки</a></div>
+      </div>
+      <div class="fan" id="obMarks" aria-label="Семь закладок недели"></div>
+    </div>
+  </header>
+
+  <section id="week">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Неделя</div><h2>Один взгляд на семь дней</h2></div>
+        <p>Полоски — нагрузка дня. Цифры — прогноз на утро 9 ноября: днём и ночью, вероятность дождя. Нажмите на день, чтобы перейти к его блоку.</p>
+      </div>
+      <div class="strip" id="strip"></div>
+    </div>
+  </section>
+
+  <section id="days">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Дни</div><h2>Расписание и варианты</h2></div>
+        <p>В каждом дне 2–4 сценария. Вкладка меняет и список, и шкалу дня. Рекомендованный сценарий открыт по умолчанию. Расстояния от виллы оценены по карте, время в пути — тоже.</p>
+      </div>
+      <div class="legend" style="margin-bottom:18px">
+        <span><i style="background:var(--thicket)"></i>практика</span>
+        <span><i style="background:#8F9E91"></i>природа и места</span>
+        <span><i style="background:#D9C3A3"></i>еда и рынок</span>
+        <span><i style="background:#C4BCAB"></i>дорога</span>
+        <span><i style="background:#DCD6C8"></i>отдых</span>
+        <span><i style="background:repeating-linear-gradient(135deg,rgba(17,31,26,.25) 0 3px,transparent 3px 6px)"></i>после заката</span>
+      </div>
+      <div id="dayBlocks"></div>
+    </div>
+  </section>
+
+  <section id="markets">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Рынки</div><h2>Где базар в какой день</h2></div>
+        <p>Расписание по данным муниципалитета Чешме, для Урлы — flypgs. Лучше идти до полудня, к обеду ряды пустеют. Часы конкретного рынка уточняем у хозяев фермы.</p>
+      </div>
+      <div class="baths" id="marketGrid"></div>
+    </div>
+  </section>
+
+  <section id="maps">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Треки хайков</div><h2>Маршруты в телефоне</h2></div>
+        <p>Каждая ссылка ведёт на готовый трек или точку старта. Откройте её на телефоне до выхода, пока есть связь. Весь маршрут дня на машине — кнопка «Весь маршрут дня в Google Maps» в блоке дня.</p>
+      </div>
+      <div class="maps">
+        <div class="bath pick"><span class="eyebrow">Ср 11 · Путь</span><b>Дикие бухты Урлы</b><span class="mono muted">18,3 км · ≈6 ч · кольцо</span><span>Кольцо вдоль диких бухт. Трек на Wikiloc; чтобы идти по нему без связи, нажмите Download (нужен бесплатный аккаунт).</span><a href="https://no.wikiloc.com/hiking-trails/remote-beaches-yagcilar-village-urla-izmir-9453342">трек на Wikiloc</a></div>
+        <div class="bath"><span class="eyebrow">Пт 13 · Святилище</span><b>Ильдыры и акрополь Эритр</b><span class="mono muted">≈1,5 ч · старт у ворот</span><span>Готового трека нет: от ворот античного города к театру и вверх на акрополь.</span><a href="https://www.komoot.com/pt-pt/highlight/5673834">точка на komoot</a></div>
+        <div class="bath"><span class="eyebrow">Пт 13 · вариант Б</span><b>Сыгаджык — Теос</b><span class="mono muted">5,4 км · +70 м · 1 ч 27 мин</span><span>Кольцо через рынок Сыгаджыка. Трек в гайде komoot.</span><a href="https://blog.komoot.de/guide/34267/hiking-in-izmir">гайд komoot</a></div>
+        <div class="bath"><span class="eyebrow">Вт 10 · Тело</span><b>Старый Чешме: крепость и гавань</b><span class="mono muted">4,6 км · +50 м · 1 ч 14 мин</span><span>На случай дождя или утра отъезда.</span><a href="https://www.komoot.com/smarttour/34098662">трек на komoot</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="marks">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Закладки · 50 × 180 мм</div><h2>Семь закладок</h2></div>
+        <p>Те самые закладки из вашего комплекта. Каждое утро — одна: тема, мысль и вопрос дня. Нажмите на закладку, чтобы открыть её день.</p>
+      </div>
+      <div class="marks" id="marksGrid"></div>
+    </div>
+  </section>
+
+  <section id="memo">
+    <div class="wrap">
+      <div class="sec-head"><div><div class="eyebrow">Памятка</div><h2>Что взять и что важно знать</h2></div></div>
+      <div class="memo">
+        <div class="box"><h5>Взять с собой</h5><ul>
+          <li><span>Треккинговые ботинки и лёгкая обувь для дома</span></li>
+          <li><span>Рюкзак 20–25 л, 2,5 л воды на среду</span></li>
+          <li><span>Ветровка, флис, одна яркая вещь</span></li>
+          <li><span>Налобный фонарь</span></li>
+          <li><span>Купальник и тапочки для бани</span></li>
+          <li><span>Наличные лиры мелкими для рынков</span></li>
+        </ul></div>
+        <div class="box"><h5>Безопасность</h5><ul>
+          <li><span><b>112</b> — единый экстренный номер</span></li>
+          <li><span>Больница Чешме: Boyalık, дорога на Ылыджу, ≈15 мин</span></li>
+          <li><span>Охота: ср, сб, вс; во вт только кабан. Там, где охотятся, — тропа и яркая одежда</span></li>
+          <li><span>Собаки пастухов: не бежать, не бросать камни, спокойно уйти в сторону</span></li>
+          <li><span>Все переходы заканчиваем к 17:30</span></li>
+        </ul></div>
+        <div class="box dark"><h5>Ритм каждого дня</h5><ul>
+          <li><span>Утро: тело и тишина</span></li>
+          <li><span>День: природа или одна поездка</span></li>
+          <li><span>Закат: одно слово дня</span></li>
+          <li><span>Вечер: общий стол без телефонов и круг</span></li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color:var(--ink)">Источники.</b> Проверено 7–9 ноября 2026. Всё со знаком ≈ — наша оценка. Расстояние «≈ км» — по прямой от виллы, умноженное на 1,3.</p>
+    <ul>
+      <li><a href="https://thespaceretreat.com/retreats/signal-noise">The Space Retreat · Signal / Noise — сайт ретрита</a></li>
+      <li><a href="https://www.cesme.bel.tr/bazaars-en">Рынки Чешме — муниципалитет</a></li>
+      <li><a href="https://www.flypgs.com/blog/izmirdeki-7-semt-pazari/">Рынки Урлы и Сыгаджыка — flypgs</a></li>
+      <li><a href="https://sunrise-sunset.org/tr/cesme">Восход и закат — sunrise-sunset.org</a></li>
+      <li><a href="https://no.wikiloc.com/hiking-trails/remote-beaches-yagcilar-village-urla-izmir-9453342">Дикие бухты у Ягджылар — Wikiloc</a></li>
+      <li><a href="https://goturkiye.com/cycling/germiyan-ildiri">Германджик — Ильдыры — GoTürkiye</a></li>
+      <li><a href="https://topostext.org/place/384265PEry">Эритры, святилище Сивиллы — ToposText</a></li>
+      <li><a href="https://www.turkishmuseums.com/museum/detail/2096-izmir-klaros-archaeological-site/2096/4">Кларос — turkishmuseums.com</a></li>
+      <li><a href="https://www.turkishmuseums.com/museum/detail/2100-izmir-teos-archaeological-site/2100/4">Теос — turkishmuseums.com</a></li>
+      <li><a href="https://www.turkishmuseums.com/museum/detail/2097-izmir-klazomenai-archaeological-site/2097/4">Клазомены — turkishmuseums.com</a></li>
+      <li><a href="https://blog.komoot.de/guide/34267/hiking-in-izmir">Кольцо Сыгаджык — Теос — komoot</a></li>
+      <li><a href="https://www.komoot.com/smarttour/34098662">Старый Чешме, кольцо — komoot</a></li>
+      <li><a href="https://likecesme.com/cesme-spas/">Хаммамы и термы — LikeCesme</a></li>
+      <li><a href="https://www.hotspringsguides.com/hot-springs/cesme-sifne-thermal-springs-turkey">Термы Шифне — Hot Springs Guides</a></li>
+      <li><a href="https://www.tatilbudur.com/balcova-termal-otel-health-spa-club">Термы Балчова — Tatilbudur</a></li>
+      <li><a href="https://mesprestiges.com/en/cesme/places/dalyan-cevatin-yeri">Cevat'ın Yeri — Mes Prestiges</a></li>
+      <li><a href="https://yemek.com/urla-mekanlari/">Рестораны Урлы — yemek.com</a></li>
+      <li><a href="https://guide.michelin.com/tr/tr/izmir/izmir_2809416/restaurant/asma%C2%A0yaprag%C4%B1">Asma Yaprağı — Michelin</a></li>
+      <li><a href="https://www.eleman.net/is-rehberi/ne-zaman/av-sezonu-ne-zaman-h21744">Сезон охоты 2026–27 — eleman.net</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+/* ---------- места: координаты; ap = приблизительные ---------- */
+var VILLA=[38.272972,26.291435];
+var P={
+  adb:{n:"Аэропорт ADB",c:[38.2924,27.157],min:75,q:"Izmir Adnan Menderes Airport"},
+  ildiri:{n:"Эритры, Ильдыры",c:[38.3808,26.4791],min:35,q:"Erythrai Antik Kenti, Ildır, Çeşme"},
+  germiyan:{n:"Германджик",c:[38.320,26.470],min:30,ap:1,q:"Germiyan, Çeşme, İzmir"},
+  dalyan:{n:"Далян",c:[38.334,26.316],min:15,ap:1,q:"Dalyan Mahallesi, Çeşme"},
+  cesme:{n:"Центр Чешме",c:[38.3235,26.3032],min:12,q:"Çeşme Kalesi"},
+  pargali:{n:"Хаммам Паргалы",c:[38.3215,26.3065],min:12,ap:1,q:"Pargalı İbrahim Paşa Hamamı, Çeşme"},
+  ilica:{n:"Ылыджа",c:[38.306,26.362],min:15,ap:1,q:"Ilıca, Çeşme"},
+  dulcis:{n:"Dulcis Thermal Spa",c:[38.312,26.372],min:15,ap:1,q:"Radisson Blu Resort & Spa Çeşme"},
+  sifne:{n:"Термы Шифне",c:[38.330,26.405],min:20,ap:1,q:"Şifne Termal Otel, Çeşme"},
+  alacati:{n:"Алачаты",c:[38.270,26.373],min:15,ap:1,q:"Alaçatı, Çeşme"},
+  ciftlik:{n:"Чифтлик",c:[38.296,26.318],min:10,ap:1,q:"Çiftlikköy, Çeşme"},
+  urla:{n:"Урла",c:[38.323,26.765],min:45,ap:1,q:"Urla, İzmir"},
+  urlawine:{n:"Urla Şarapçılık",c:[38.2529,26.7365],min:45,q:"Urla Şarapçılık"},
+  kostem:{n:"Музей масла Köstem",c:[38.3431,26.5419],min:35,q:"Köstem Zeytinyağı Müzesi"},
+  klazo:{n:"Клазомены",c:[38.371976,26.78637],min:50,q:"Klazomenai Antik Kenti"},
+  yagcilar:{n:"Ягджылар",c:[38.24,26.71],min:50,ap:1,q:"Yağcılar, Urla, İzmir"},
+  teos:{n:"Теос",c:[38.17879,26.78694],min:70,q:"Teos Antik Kenti"},
+  sigacik:{n:"Сыгаджык",c:[38.196,26.785],min:70,ap:1,q:"Sığacık Kalesi"},
+  klaros:{n:"Кларос",c:[38.0048,27.1925],min:80,q:"Klaros Antik Kenti"},
+  balcova:{n:"Термы Балчова",c:[38.389,27.040],min:60,ap:1,q:"Balçova Termal Otel"},
+  panurla:{n:"Panurla Wooden House",c:[38.30,26.66],min:45,ap:1,q:"Panurla Wooden House, Zeytineli, Urla"},
+  cevat:{n:"Cevat'ın Yeri",c:[38.336,26.318],ap:1,eat:1,q:"Cevat'ın Yeri Dalyan Restoran Çeşme"},
+  defne:{n:"Defne Yaprağı",c:[38.333,26.320],ap:1,eat:1,q:"Defne Yaprağı Balık Restaurant Dalyan Çeşme"},
+  germcafe:{n:"Кафе Германджика",c:[38.318,26.466],ap:1,eat:1,q:"Germiyan köyü kahvaltı, Çeşme"},
+  yengec:{n:"Yengeç",c:[38.365,26.770],ap:1,eat:1,q:"Yengeç Restaurant Urla İskele"},
+  akin:{n:"Akın'ın Yeri",c:[38.345,26.705],ap:1,eat:1,q:"Akın'ın Yeri Özbek Urla"},
+  kumru:{n:"Kumrucu Şevki",c:[38.304,26.358],ap:1,eat:1,q:"Kumrucu Şevki Ilıca Çeşme"},
+  yusuf:{n:"Yusuf Usta",c:[38.274,26.368],ap:1,eat:1,q:"Yusuf Usta Ev Yemekleri Alaçatı"},
+  asma:{n:"Asma Yaprağı",c:[38.285,26.385],ap:1,eat:1,q:"Asma Yaprağı Ovacık Çeşme"},
+  kostemr:{n:"Ресторан Köstem",c:[38.3425,26.5425],ap:1,eat:1,q:"Köstem Zeytinyağı Müzesi"}
+};
+function km(key){var c=P[key].c,R=6371,t=Math.PI/180,dLa=(c[0]-VILLA[0])*t,dLo=(c[1]-VILLA[1])*t;
+  var a=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(VILLA[0]*t)*Math.cos(c[0]*t)*Math.sin(dLo/2)*Math.sin(dLo/2);
+  return Math.max(1,Math.round(2*R*Math.asin(Math.sqrt(a))*1.3));}
+function gmap(key){var o=P[key];return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(o.q||(o.c[0]+","+o.c[1]));}
+var LAND={"W": 1000, "H": 658.4, "B": [26.02, 38.1, 27.22, 38.72], "k": 0.784776370533083, "sx": 1061.8736300218457, "d": "M103.6,241.1L84.9,246.8L91.4,256.5L95.0,259.2L102.0,261.3L97.0,267.9L111.7,268.4L112.1,275.1L102.0,290.3L99.5,306.4L99.4,319.7L108.3,399.7L119.7,443.2L97.5,446.4L77.9,462.7L68.5,486.7L76.7,512.4L76.7,528.2L56.8,538.8L16.7,552.0L10.1,563.1L4.9,587.1L-0.2,595.4L-8.5,598.1L-25.7,590.6L-37.6,588.3L-46.2,582.1L-64.7,557.5L-68.1,555.9L-71.6,557.0L-79.6,548.9L-83.3,543.0L-83.3,456.0L-71.5,443.2L-51.0,444.7L-46.4,443.2L-40.9,430.7L-40.5,417.7L-37.0,406.5L-23.2,399.7L-27.5,387.8L-25.8,361.8L-28.9,348.3L-30.5,353.6L-35.0,355.6L-38.8,347.5L-43.8,341.4L-50.2,336.9L-57.8,333.8L-53.1,324.4L-53.7,309.8L-57.9,294.6L-63.5,283.1L-73.4,272.7L-83.3,269.1L-83.3,136.0L-20.5,122.9L-3.4,125.3L36.6,138.0L38.5,145.3L73.5,188.2L76.9,178.7L79.5,175.0L84.9,173.7L85.5,169.0L84.5,167.4L79.8,166.4L92.3,162.2L103.0,165.2L112.1,174.2L119.7,188.2L109.1,201.3L107.7,222.5L103.6,241.1Z M893.2,748.3L879.9,746.5L875.1,743.3L873.2,737.9L870.6,721.4L863.3,716.0L839.2,712.1L796.2,695.3L774.4,693.0L748.1,698.3L733.4,704.2L727.8,704.9L723.8,708.4L717.9,723.8L710.9,727.3L704.1,721.7L685.0,683.8L689.5,670.3L688.7,654.7L684.6,639.0L679.3,625.1L670.9,610.6L652.5,592.1L644.7,581.6L630.0,589.1L626.2,576.1L628.1,544.7L616.9,534.4L603.9,535.6L589.4,541.3L573.6,544.7L521.5,545.0L513.3,548.4L502.4,617.2L498.5,614.3L496.2,610.6L491.0,610.6L493.5,625.7L493.5,639.4L489.3,649.5L479.2,654.2L473.9,649.6L464.0,623.6L456.4,610.6L456.0,632.9L447.4,634.7L436.1,626.0L419.8,608.0L414.5,599.3L412.9,588.6L416.1,573.8L393.1,579.8L372.1,562.1L351.9,539.5L331.2,530.2L336.8,552.0L331.2,552.0L326.8,545.4L308.5,526.9L312.1,506.7L312.4,497.3L308.5,486.7L302.8,486.7L295.8,515.2L278.3,522.2L257.2,515.0L230.1,492.1L222.2,487.3L178.9,473.8L177.6,466.9L182.3,450.4L204.5,460.1L213.6,445.5L221.6,426.2L239.7,421.5L239.7,413.6L224.1,402.8L221.8,383.4L228.4,371.8L239.7,384.6L241.1,374.7L243.1,370.4L250.9,363.5L254.3,376.4L254.9,387.7L252.3,397.6L245.3,407.0L253.7,412.3L272.0,415.4L274.8,424.6L280.1,428.1L292.2,428.9L304.2,426.4L309.9,419.4L302.8,407.0L302.8,399.7L315.8,408.3L331.2,407.0L341.0,402.7L368.5,384.6L379.9,375.0L380.9,353.7L373.4,331.7L359.6,320.0L359.6,312.1L380.7,322.1L390.9,333.2L398.2,332.1L410.9,304.8L399.1,297.7L378.6,278.9L361.6,272.7L350.6,262.5L342.5,261.3L335.0,265.8L328.5,280.0L322.7,283.1L306.6,282.2L306.8,277.7L314.4,266.9L319.8,246.8L316.6,234.1L291.4,196.1L296.5,203.3L294.2,190.4L283.9,158.3L282.6,151.9L283.4,144.9L273.9,104.8L274.1,89.7L275.9,74.1L280.2,61.9L288.3,57.0L300.9,54.8L319.2,45.3L328.4,43.1L350.5,44.9L371.3,50.3L389.7,59.2L404.7,71.5L433.0,102.3L446.5,121.7L450.7,138.0L470.0,168.9L491.0,196.1L504.0,207.4L508.7,213.2L513.3,225.1L515.0,236.8L515.0,257.3L519.4,267.9L513.9,272.4L507.6,275.1L501.1,269.1L492.4,267.2L482.7,269.3L473.5,275.1L487.7,282.7L487.5,292.3L480.3,304.6L473.5,320.0L493.2,322.5L501.7,334.1L506.9,350.3L516.4,366.8L530.9,415.4L544.3,438.3L562.2,432.0L566.6,418.6L561.3,409.5L547.9,399.7L542.2,355.6L546.6,337.3L556.1,318.8L568.7,307.8L582.6,312.1L582.6,304.8L587.8,304.8L597.2,315.5L606.9,334.8L622.4,377.9L639.5,370.0L645.9,383.7L658.2,382.2L673.0,374.6L687.9,370.0L753.8,363.5L794.8,343.8L808.1,341.0L827.8,326.5L836.3,327.0L844.1,330.2L852.1,331.7L862.0,326.5L863.2,330.8L867.7,326.5L890.5,337.4L909.9,324.9L929.5,304.1L953.5,290.3L953.5,283.1L945.4,276.7L941.8,277.4L935.9,283.1L930.2,275.1L914.1,282.5L886.1,279.6L878.9,283.1L857.6,272.7L835.3,273.5L765.5,303.5L762.8,302.8L770.9,290.3L756.6,280.3L731.4,239.2L720.0,232.3L699.4,225.7L691.1,220.4L672.4,205.8L662.3,188.2L674.4,200.4L689.2,211.6L711.8,225.7L724.9,225.1L724.9,217.8L714.8,205.6L704.2,195.9L692.7,188.0L679.3,181.6L682.8,169.1L687.1,142.9L690.7,130.2L678.5,118.7L670.9,122.3L661.4,129.9L644.7,130.2L650.9,115.0L632.8,108.6L622.4,107.2L611.0,108.4L616.2,86.6L605.4,86.4L597.5,82.3L582.6,71.5L588.4,64.8L594.7,59.8L602.0,57.1L611.0,57.0L594.3,32.2L588.2,18.4L582.6,-1.0L598.0,-11.4L640.8,-20.6L665.2,-37.6L669.8,-35.8L675.5,-28.9L693.0,-27.3L712.1,-18.6L723.8,-14.9L736.2,-15.5L731.0,-30.0L739.2,-35.7L746.1,-42.4L752.5,-44.8L759.5,-37.2L762.0,-45.5L762.6,-53.6L759.5,-73.5L753.8,-65.5L737.1,-95.3L731.0,-102.5L739.5,-106.2L767.2,-106.2L769.9,-94.2L784.0,-91.5L792.9,-105.3L792.5,-106.2L1083.3,-106.2L1083.3,764.5L909.2,764.5L906.3,757.4L901.6,751.1L893.2,748.3Z M278.3,312.0L274.4,313.6L270.2,311.1L257.6,316.5L254.5,295.9L264.2,292.0L270.3,287.1L279.5,283.4L284.1,292.6L280.0,300.6L278.3,312.0Z M560.7,251.8L561.3,220.4L564.5,211.6L567.0,198.5L566.7,188.7L568.5,188.2L574.8,190.5L585.4,198.8L591.7,211.5L592.7,239.1L604.5,251.3L606.3,259.2L603.2,272.1L593.0,277.8L586.8,272.1L584.7,266.2L565.2,257.9L560.7,251.8Z M225.3,242.4L219.3,240.3L215.6,236.3L215.5,231.5L212.4,220.9L216.0,217.5L223.8,226.2L227.8,235.2L227.6,240.7L225.3,242.4Z M205.7,222.5L201.8,222.9L193.7,231.5L189.6,229.3L190.0,223.6L185.4,226.8L180.2,226.5L176.0,223.9L165.3,221.5L156.9,216.9L153.4,218.1L151.0,216.7L149.3,209.7L137.2,192.6L137.6,188.8L153.2,190.0L156.4,191.5L159.9,197.4L162.2,198.4L167.5,196.9L175.5,198.1L184.4,205.6L202.8,212.4L206.7,211.9L208.3,214.5L208.3,219.8L205.7,222.5Z"};
+
+
+/* ---------- дни ---------- */
+/* строка: [время, мин, тип, название, детали, место|null, ссылка|null, флаг(1 — главное, 2 — закат)] */
+var BM=["img/bm1.webp","img/bm2.webp","img/bm3.webp","img/bm4.webp","img/bm5.webp","img/bm6.webp","img/bm7.webp"];
+var DAYS=[
+{eat:[],n:1,date:"2026-11-09",dow:"Пн",dd:"понедельник, 9 ноября",word:"Порог",sign:"porog",load:0,bm:"#E6DDCB",bf:"#111F1A",
+ idea:"Необязательно нести дальше всё, что было с тобой до этой недели.",q:"Что я оставляю за порогом этой недели?",
+ hi:16,lo:9,p:10,rise:"07:49",set:"18:07",hunt:"",
+ scn:[
+  {name:"Приезд",rec:1,note:"Сегодня никуда не едем: дорога, сад, первый закат, первый стол.",rows:[
+   ["13:30",75,"road","Дорога из аэропорта","Две машины, по рейсам","adb"],
+   ["15:00",60,"rest","Заселение, чай в саду","Комнаты, обход фермы, без планов"],
+   ["16:30",60,"rest","Свободное время","Сон, душ, сад"],
+   ["17:40",30,"practice","«Порог» у ворот","Каждый молча переходит черту и оставляет за ней одну мысль",null,null,1],
+   ["18:07",15,"nature","Закат","Одно слово дня",null,null,2],
+   ["19:00",90,"food","Ужин на гриле в саду","Телефоны в корзине у входа"],
+   ["20:30",60,"practice","Круг знакомства и камера-обскура","Затемняем одну комнату: утром на стене будет сад вверх ногами"]]},
+  {name:"Поздний рейс",note:"Если группа приезжает после 18:00: ужин и короткий круг, «Порог» переносим на рассвет вторника, 07:50.",rows:[
+   ["17:30",75,"road","Дорога из аэропорта","","adb"],
+   ["19:00",90,"food","Ужин на гриле",""],
+   ["20:30",30,"practice","Короткий круг","Имена и одна фраза"]]}],
+ market:{key:"ildiri",name:"Ильдыры",day:"пн",tip:"Далеко от дороги из аэропорта. Продукты к ужину — у хозяев фермы."},
+ free:[["Прогулка по ферме и оливам","30–40 мин"],["Сон после дороги","сколько нужно"],["Чай в саду в тишине","15 мин"]],
+ food:[["Ужин","Дома, гриль в саду",null]],
+ bring:"Удобная обувь, тёплый слой на вечер: после заката около +10 °C.",
+ note:"Музей масла Köstem по понедельникам закрыт."},
+
+{eat:["cevat","defne"],n:2,date:"2026-11-10",dow:"Вт",dd:"вторник, 10 ноября",word:"Тело",sign:"telo",load:1,bm:"#F4EFE4",bf:"#111F1A",
+ idea:"Тело часто замечает раньше, чем мы успеваем назвать.",q:"Что я замечаю в теле, когда перестаю торопиться?",
+ hi:17,lo:13,p:20,rise:"07:50",set:"18:06",hunt:"охота только на кабана",
+ scn:[
+  {name:"Практика, рынок, крепость",rec:1,note:"Мягкий день перед путём: длинная практика, рыбацкий рынок, лёгкое кольцо у крепости, ранний сон.",rows:[
+   ["08:00",75,"practice","Длинная практика","Тело, суставы, дыхание, стопы перед средой"],
+   ["09:30",45,"food","Завтрак",""],
+   ["10:30",90,"food","Рынок в Даляне","Овощи, оливки, сыр, рыбацкая гавань","dalyan"],
+   ["12:15",75,"food","Обед в Даляне","Рыба у гавани","cevat"],
+   ["14:30",75,"nature","Старый Чешме: крепость и гавань","Кольцо 4,6 км, +50 м, ≈1 ч 15 мин","cesme","https://www.komoot.com/smarttour/34098662",1],
+   ["16:00",60,"rest","Дома: сон, сад",""],
+   ["17:30",30,"practice","Сборы на среду","Вода 2,5 л, обед, перчатки, яркий слой"],
+   ["18:06",15,"nature","Закат в саду","",null,null,2],
+   ["19:00",90,"food","Лёгкий ужин дома","Ранний сон"]]},
+  {name:"Германджик и закат в Ильдыры",note:"Если хочется дороги: деревня, оливы и закат над островами. Возвращаемся к 19:30.",rows:[
+   ["08:30",60,"practice","Практика",""],
+   ["11:30",30,"road","Дорога в Германджик","","germiyan"],
+   ["12:00",90,"food","Германджик: обед","Хлеб из дровяной печи, сыр копаништи","germcafe"],
+   ["15:00",90,"nature","Прогулка у бухты Ильдыры","≈1,5 ч, оценка","ildiri",null,1],
+   ["18:06",15,"nature","Закат над островами","",null,null,2],
+   ["18:30",60,"road","Домой, ужин дома",""]]},
+  {name:"Если дождь",note:"Под крышей: музей масла и длинная практика дома.",rows:[
+   ["09:00",75,"practice","Длинная практика дома",""],
+   ["11:00",35,"road","Дорога в Köstem","","kostem"],
+   ["11:35",120,"nature","Музей масла Köstem и обед","Вт–пт 10:00–18:00","kostem",null,1],
+   ["19:00",90,"food","Ужин дома",""]]}],
+ market:{key:"dalyan",name:"Далян",day:"вт",tip:"Утром, после практики. Рядом гавань и рыбаки."},
+ free:[["Самомассаж стоп с мячиком","15 мин"],["Сон днём","1 ч"],["Кофе в гавани Даляна","30 мин"]],
+ food:[["Обед","Cevat'ın Yeri, Далян, с 1975 г.","https://mesprestiges.com/en/cesme/places/dalyan-cevatin-yeri"],["Обед","Defne Yaprağı, Далян, ежедневно 12–24","https://mesprestiges.com/en/cesme/places/defne-yapragi-dalyan"],["Ужин","Дома, лёгкий",null]],
+ bring:"Сумка для рынка, наличные, удобная обувь, вода 1 л.",
+ note:"По вторникам охота разрешена только на кабана. Вечером собираем рюкзаки на среду."},
+
+{eat:["yengec","akin"],n:3,date:"2026-11-11",dow:"Ср",dd:"среда, 11 ноября",word:"Путь",sign:"put",load:3,bm:"#17211C",bf:"#F4F0E7",
+ idea:"Дорога не требует ответа. Она предлагает продолжать идти.",q:"Что стало слышно, когда мне не нужно было отвечать?",
+ hi:20,lo:14,p:15,rise:"07:51",set:"18:05",hunt:"охотничий день",
+ scn:[
+  {name:"Дикие бухты Урлы",rec:1,note:"Кольцо 18,3 км, ≈6 ч ходу, средняя сложность. Короткий скальный участок, крутой спуск, воды нет. Идём с гидом или после разведки.",rows:[
+   ["07:00",30,"practice","Стопы, ноги, дыхание",""],
+   ["07:30",15,"food","Лёгкий завтрак, сборы","2,5 л воды на человека"],
+   ["07:45",50,"road","Дорога в Ягджылар","","yagcilar"],
+   ["08:45",225,"nature","Первая половина кольца","Лесные тропы, молчаливый километр","yagcilar","https://no.wikiloc.com/hiking-trails/remote-beaches-yagcilar-village-urla-izmir-9453342",1],
+   ["12:30",60,"food","Обед на пляже","Пикник и полчаса тишины у воды"],
+   ["13:30",120,"nature","Вторая половина кольца","Скальный участок, крутой спуск"],
+   ["15:30",30,"practice","Финиш, растяжка",""],
+   ["16:00",30,"road","В Урлу","","urla"],
+   ["16:30",90,"food","Ужин в Урле","Yengeç или Akın'ın Yeri","yengec"],
+   ["18:00",50,"road","Домой",""],
+   ["18:05",15,"nature","Закат по дороге","",null,null,2]]},
+  {name:"Короткая версия",note:"Для тех, кто слабее: до первой бухты и обратно, ≈2–3 ч (оценка). Ждут остальных на пляже.",rows:[
+   ["07:45",50,"road","Дорога в Ягджылар","","yagcilar"],
+   ["09:00",150,"nature","До первой бухты и обратно","Оценка, уточняем на разведке","yagcilar",null,1],
+   ["11:30",240,"rest","Пляж, книга, ожидание группы",""],
+   ["16:30",90,"food","Ужин в Урле вместе со всеми","","yengec"]]},
+  {name:"Поменять с четвергом",note:"Если ветер, дождь или рядом охота: сегодня «Вода и огонь», путь — в четверг, он не охотничий.",rows:[
+   ["09:00",60,"practice","Длинная практика",""],
+   ["11:30",60,"food","Рынок в центре Чешме","Среда","cesme"],
+   ["15:30",150,"rest","Термы и хаммам","См. четверг","dulcis",null,1],
+   ["19:00",120,"practice","Огонь в саду и ужин",""]]}],
+ market:{key:"cesme",name:"Центр Чешме и Рейсдере",day:"ср",tip:"В день пути не успеваем. Пригодится в сценарии «поменять с четвергом»."},
+ free:[["Купание на пляже, если тепло","20 мин"],["Пристань Урлы на закате","30 мин"],["Ранний сон","обязательно"]],
+ food:[["Обед","Пикник из рюкзаков",null],["Ужин","Yengeç, Урла-Искеле: дом 1860 года, больше ста мезе","https://yemek.com/urla-mekanlari/"],["Ужин","Akın'ın Yeri, Озбек: рыба с 1970-х","https://yemek.com/urla-mekanlari/"]],
+ bring:"2,5 л воды, обед, перекус, ботинки с протектором, перчатки, купальник, яркий слой, фонарь.",
+ note:"Охотничий день: только тропа, все в ярком, держимся вместе."},
+
+{eat:["kumru"],n:4,date:"2026-11-12",dow:"Чт",dd:"четверг, 12 ноября",word:"Вода и огонь",sign:"voda",load:0,bm:"#7E8B80",bf:"#111F1A",
+ idea:"Не всё, что когда-то защищало, нужно сохранять навсегда.",q:"Какой старый паттерн когда-то меня защищал, но теперь забирает слишком много сил?",
+ hi:21,lo:19,p:20,rise:"07:52",set:"18:04",hunt:"",
+ scn:[
+  {name:"Термы и огонь",rec:1,note:"После пути: вода и жар днём, огонь в саду вечером. Каждый сжигает листок со старым паттерном.",rows:[
+   ["09:00",45,"food","Поздний завтрак",""],
+   ["10:00",60,"practice","Длинная практика","Растяжка, суставы, дыхание"],
+   ["11:15",15,"road","В Ылыджу","","ilica"],
+   ["11:30",60,"food","Рынок в Ылыдже","Мандарины, оливки, травы","ilica"],
+   ["12:30",60,"food","Обед: кумру в Ылыдже","Kumrucu Şevki","kumru"],
+   ["13:45",105,"rest","Дома: сон, сад, книга",""],
+   ["15:30",150,"practice","Вода: термы, хаммам, сауна","Dulcis Thermal Spa, дневной пропуск","dulcis",null,1],
+   ["18:04",15,"nature","Закат","",null,null,2],
+   ["19:00",150,"practice","Огонь: мангал в саду и ужин","Листок «что больше не нужно» — в огонь"]]},
+  {name:"Исторический хаммам",note:"Хаммам Паргалы Ибрагим-паши: по четвергам мужской день, для смешанной группы просим отдельный час. Иначе суббота, семейный день.",rows:[
+   ["10:00",60,"practice","Длинная практика",""],
+   ["11:30",60,"food","Рынок в Ылыдже","","ilica"],
+   ["16:00",90,"practice","Хаммам с кесе","500 TL, с кесе 750 TL (октябрь 2025)","pargali",null,1],
+   ["17:45",30,"nature","Закат у крепости","","cesme",null,2],
+   ["19:00",150,"practice","Огонь в саду и ужин",""]]},
+  {name:"Термы у моря",note:"Термы Шифне: открытые термальные бассейны у воды, к закату. Работают ли в ноябре — уточняем.",rows:[
+   ["10:00",60,"practice","Длинная практика",""],
+   ["15:30",20,"road","В Шифне","","sifne"],
+   ["16:00",120,"rest","Горячая вода у моря","","sifne",null,1],
+   ["18:04",15,"nature","Закат из воды","",null,null,2],
+   ["19:00",150,"practice","Огонь в саду и ужин",""]]},
+  {name:"Дом с сауной",note:"Panurla Wooden House в Урле: снимаем дом целиком с сауной и бассейном на день.",rows:[
+   ["10:00",60,"practice","Длинная практика",""],
+   ["12:00",45,"road","В Урлу","","panurla"],
+   ["13:00",240,"rest","Сауна, бассейн, обед в доме","Только наша группа","panurla",null,1],
+   ["17:30",45,"road","Домой",""],
+   ["19:00",150,"practice","Огонь в саду и ужин",""]]}],
+ market:{key:"ilica",name:"Ылыджа",day:"чт",tip:"В пяти минутах от терм Dulcis: рынок, обед, баня без лишних дорог."},
+ free:[["Сон днём","1–2 ч"],["Мыс Йылдызбурну в Ылыдже","20 мин"],["Письмо к огню: что оставить","15 мин"]],
+ food:[["Обед","Kumrucu Şevki, Ылыджа: чешменский кумру","https://mesprestiges.com/en/cesme/guide/hidden-gems"],["Ужин","Дома, у огня",null]],
+ bring:"Купальник, тапочки, своё полотенце, тёплый слой к огню.",
+ note:"Огонь разводим только в мангале, по правилам хозяев. Цену дневного пропуска в Dulcis уточняем при брони."},
+
+{eat:["germcafe"],n:5,date:"2026-11-13",dow:"Пт",dd:"пятница, 13 ноября",word:"Святилище",sign:"svyat",load:1,bm:"#2C4436",bf:"#F4F0E7",
+ idea:"Иногда мы уже знаем. Просто это знание говорит тихо.",q:"Что я уже знаю о себе, но продолжаю заглушать шумом?",
+ hi:21,lo:20,p:25,rise:"07:53",set:"18:04",hunt:"",
+ scn:[
+  {name:"Эритры на закате",rec:1,note:"Ближнее святилище: храм Афины Полиады и место Сивиллы Эритрейской. Небольшой хайк к акрополю и закат над островами.",rows:[
+   ["08:30",45,"practice","Практика",""],
+   ["09:15",45,"food","Завтрак",""],
+   ["10:30",60,"food","Пятничный рынок в Чифтлике","10 минут от фермы","ciftlik"],
+   ["12:00",30,"road","Дорога в Германджик","","germiyan"],
+   ["12:30",90,"food","Германджик: обед","Хлеб из дровяной печи, сыр копаништи","germcafe"],
+   ["15:00",90,"nature","Небольшой хайк к акрополю","Бухта, стены, подъём на 88 м. ≈1,5 ч, оценка","ildiri",null,1],
+   ["16:45",60,"practice","Святилище: храм Афины, театр","Рассказ о Сивилле, 20 минут тишины","ildiri"],
+   ["18:04",15,"nature","Закат над островами","",null,null,2],
+   ["18:30",45,"road","Домой",""],
+   ["19:30",90,"food","Ужин и письмо себе","Через три месяца ведущие его отправят"]]},
+  {name:"Кларос и Теос",note:"Дальнее святилище: оракул Аполлона и храм Диониса с лёгким кольцом 5,4 км, +70 м.",rows:[
+   ["08:00",45,"practice","Практика",""],
+   ["10:00",80,"road","В Кларос","","klaros"],
+   ["11:30",90,"nature","Кларос, оракул Аполлона","08:30–17:30, касса до 17:00","klaros",null,1],
+   ["13:30",60,"food","Обед в Сыгаджыке","У гавани, рядом с Теосом","sigacik"],
+   ["15:00",90,"nature","Теос и кольцо 5,4 км","3 €, касса до 17:00","teos","https://blog.komoot.de/guide/34267/hiking-in-izmir"],
+   ["16:45",70,"road","Домой",""],
+   ["19:00",90,"food","Ужин дома",""]]},
+  {name:"Тихий день",note:"Если группа устала: ближний рынок, ферма, сон, святилище внутри.",rows:[
+   ["09:00",75,"practice","Длинная практика",""],
+   ["11:00",60,"food","Рынок в Чифтлике","","ciftlik"],
+   ["13:00",240,"rest","Ферма, сон, разговоры",""],
+   ["18:04",15,"nature","Закат","",null,null,2],
+   ["19:00",90,"food","Готовим вместе",""]]}],
+ market:{key:"ciftlik",name:"Чифтлик · Урла · Оваджык",day:"пт",tip:"Чифтлик ближе всего к ферме. В Урле центральный рынок тоже по пятницам."},
+ free:[["Кофе на площади Германджика","30 мин"],["Сидеть в театре Эритр","сколько захочется"],["Музей Musa Amca","20 мин"]],
+ food:[["Обед","Кафе Германджика: хлеб из печи, сыр","https://www.karar.com/guncel-haberler/cesmede-slow-food-koyu-cocuklu-aileler-ve-dinginlik-arayanlarin-cenneti-2063278"],["Ужин","Дома",null]],
+ bring:"Вода 1 л, ветровка, фонарь на спуск после заката.",
+ note:"Ali'nin Yeri и Agora Cafe в Ильдыры работают в сезон, в ноябре звоним заранее."},
+
+{eat:["yusuf","kostemr","asma"],n:6,date:"2026-11-14",dow:"Сб",dd:"суббота, 14 ноября",word:"Земля",sign:"zemlya",load:1,bm:"#D7C4A0",bf:"#111F1A",
+ idea:"То, чему мы даём внимание, получает возможность расти.",q:"Чему я хочу дать больше места?",
+ hi:22,lo:17,p:15,rise:"07:55",set:"18:03",hunt:"охотничий день",
+ scn:[
+  {name:"Рынок и прощальный стол",rec:1,note:"Субботний рынок Алачаты, готовим вместе из того, что выросло здесь, прощальный ужин в саду.",rows:[
+   ["08:30",45,"practice","Практика",""],
+   ["09:30",15,"road","В Алачаты","","alacati"],
+   ["09:45",135,"food","Субботний рынок Алачаты","Всё к прощальному ужину","alacati"],
+   ["12:00",75,"food","Обед и каменные улицы","Yusuf Usta, домашняя кухня","yusuf"],
+   ["13:30",90,"rest","Дома: отдых, сборы",""],
+   ["15:00",120,"food","Готовим вместе","Мезе, хлеб, гриль"],
+   ["18:03",15,"nature","Последний закат в саду","",null,null,2],
+   ["19:00",150,"food","Прощальный ужин и круг благодарности","",null,null,1]]},
+  {name:"Масло и вино",note:"Земля в стакане и в бутылке: музей масла, Клазомены, дегустация в Урле. Возвращаемся к прощальному ужину.",rows:[
+   ["08:30",45,"practice","Практика",""],
+   ["10:00",35,"road","В Köstem","","kostem"],
+   ["10:35",75,"nature","Музей масла Köstem","Сб 10:00–19:00","kostem","https://mesprestiges.com/en/cesme/places/kostem-zeytinyagi-muzesi-uzunkuyu"],
+   ["12:00",60,"nature","Клазомены","Древнейшая маслодельня Анатолии, бесплатно","klazo",null,1],
+   ["13:15",75,"food","Обед в Урле","","yengec"],
+   ["15:00",60,"food","Дегустация","Urla Şarapçılık","urlawine"],
+   ["16:30",45,"road","Домой",""],
+   ["19:00",150,"food","Прощальный ужин",""]]},
+  {name:"Хаммам в семейный день",note:"Если в четверг не попали: суббота в хаммаме Паргалы — семейный день, можно всей группой.",rows:[
+   ["09:30",120,"food","Рынок Алачаты","","alacati"],
+   ["14:00",90,"practice","Хаммам с кесе","","pargali",null,1],
+   ["16:00",60,"food","Готовим вместе",""],
+   ["19:00",150,"food","Прощальный ужин",""]]}],
+ market:{key:"alacati",name:"Алачаты",day:"сб",tip:"Идём к 10:00, пока не людно.",src:"https://www.cesme.bel.tr/bazaars-en"},
+ free:[["Ветряные мельницы Алачаты","30 мин"],["Сборы чемоданов","1 ч"],["Тихий час в саду","1 ч"]],
+ food:[["Обед","Yusuf Usta Ev Yemekleri, Алачаты","https://turkeytravelplanner.com/go/Aegean/cesme/rests/index.html"],["Особый ужин","Asma Yaprağı, Оваджык: Michelin Bib Gourmand и Green Star, бронь","https://guide.michelin.com/tr/tr/izmir/izmir_2809416/restaurant/asma%C2%A0yaprag%C4%B1"],["Ужин","Дома, длинный стол в саду",null]],
+ bring:"Сумка для рынка, наличные, тёплый слой на вечер.",
+ note:"Охотничий день: в лес и горы не идём."},
+
+{eat:[],n:7,date:"2026-11-15",dow:"Вс",dd:"воскресенье, 15 ноября",word:"Возвращение",sign:"vozvr",load:0,bm:"#17211C",bf:"#F4F0E7",
+ idea:"Возвращение начинается не с ответа, а с внимания.",q:"Что я забираю с собой?",
+ hi:18,lo:13,p:15,rise:"07:56",set:"18:02",hunt:"охотничий день",
+ scn:[
+  {name:"Утро и дорога",rec:1,note:"Последняя практика, круг и аэропорт.",rows:[
+   ["08:00",45,"practice","Последняя практика",""],
+   ["09:00",45,"practice","Круг «что увожу, что оставляю»","Закладки остаются в дневнике",null,null,1],
+   ["09:45",60,"food","Завтрак",""],
+   ["11:00",75,"road","В аэропорт ADB","Выезд за 2 часа до посадки","adb"]]},
+  {name:"Поздний рейс",note:"Термы Балчова по дороге: отдельные термальные кабины на 75 минут, дневной вход до 17:00.",rows:[
+   ["09:00",105,"practice","Практика и круг",""],
+   ["12:00",60,"road","В Балчову","","balcova"],
+   ["13:00",150,"rest","Термы Балчова","","balcova","https://www.tatilbudur.com/balcova-termal-otel-health-spa-club",1],
+   ["16:00",30,"road","В аэропорт","","adb"]]},
+  {name:"Полдня у моря",note:"Воскресный рынок в центре Чешме и прогулка к крепости, если рейс вечером.",rows:[
+   ["09:00",105,"practice","Практика и круг",""],
+   ["11:00",90,"food","Рынок в центре Чешме","","cesme"],
+   ["12:45",75,"nature","Крепость и гавань","Кольцо 4,6 км, +50 м","cesme","https://www.komoot.com/smarttour/34098662",1],
+   ["15:00",75,"road","В аэропорт","","adb"]]}],
+ market:{key:"cesme",name:"Центр Чешме",day:"вс",tip:"Только если рейс вечером."},
+ free:[["Последний чай в саду","15 мин"],["Фото группы у ворот","10 мин"]],
+ food:[["Завтрак","Дома, последний общий стол",null]],
+ bring:"Дневник с закладками.",
+ note:"Утро проводим дома."}
+];
+
+/* ---------- лента недели ---------- */
+var d=new Date(),TODAY=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+document.getElementById("strip").innerHTML=DAYS.map(function(x){
+  var l='<span class="load">'+[1,2,3].map(function(i){return '<i class="'+(i<=x.load?'on':'')+'"></i>';}).join("")+'</span>';
+  return '<a class="chip-day'+(x.date===TODAY?' today':'')+'" href="#day-'+x.n+'">'+(x.date===TODAY?'<span class="today-tag">СЕГОДНЯ</span>':'')+
+    '<span class="d">'+x.dow+' · '+parseInt(x.date.slice(8),10)+' ноября</span><img class="th" src="'+BM[x.n-1]+'" alt=""><span class="w">'+x.word+'</span>'+l+
+    '<span class="wx"><span>'+x.hi+'°/'+x.lo+'°</span><span>☂ '+x.p+'%</span></span></a>';
+}).join("");
+
+/* ---------- блоки дней ---------- */
+function toMin(t){var a=t.split(":");return +a[0]*60+ +a[1];}
+var T0=7*60,T1=22*60;
+function pct(m){return Math.max(0,Math.min(100,(m-T0)/(T1-T0)*100));}
+function timeline(day,rows){
+  var setM=toMin(day.set),riseM=toMin(day.rise);
+  var h='<div class="timeline"><div class="tl-track">'+
+    '<div class="tl-night" style="left:0;width:'+pct(riseM)+'%"></div>'+
+    '<div class="tl-night" style="left:'+pct(setM)+'%;right:0"></div>';
+  rows.forEach(function(r,i){
+    if(r[7]===2) return;
+    var s=toMin(r[0]),e=s+r[1];
+    h+='<div class="tl-seg '+r[2]+'" data-i="'+i+'" title="'+r[0]+' · '+r[3]+'" style="left:'+pct(s)+'%;width:'+Math.max(.6,pct(e)-pct(s))+'%"></div>';
+  });
+  h+='</div><div class="tl-sun" style="left:'+pct(setM)+'%"><span>закат '+day.set+'</span></div>';
+  h+='<div class="tl-scale"><span>07</span><span>09</span><span>11</span><span>13</span><span>15</span><span>17</span><span>19</span><span>21</span></div></div>';
+  return h;
+}
+function durTxt(m){var h=Math.floor(m/60),mm=m%60;return (h?h+" ч":"")+(h&&mm?" ":"")+(mm?mm+" мин":"");}
+function actsHTML(rows){
+  return '<div class="acts">'+rows.map(function(r,i){
+    var place=r[5]&&P[r[5]],link=r[6]||(place?gmap(r[5]):null);
+    var meta='<span class="dur">'+durTxt(r[1])+'</span>';
+    if(place) meta+='<span>'+(r[2]==="road"?"≈"+place.min+" мин · ":"")+'≈'+km(r[5])+' км от виллы</span>';
+    if(link) meta+='<a href="'+link+'">'+(r[6]?'подробнее':'в Google Maps')+'</a>';
+    return '<div class="act'+(r[7]===1?' key':'')+(r[7]===2?' sunset':'')+'" data-i="'+i+'"><span class="t">'+r[0]+'</span><div><h4>'+r[3]+'</h4>'+(r[4]?'<p>'+r[4]+'</p>':'')+'</div><div class="meta">'+meta+'</div></div>';
+  }).join("")+'</div>';
+}
+function sideHTML(x){
+  var m=x.market,mk=P[m.key];
+  var h='<div class="box dark"><h5>Рынок дня · '+m.day+'</h5><p class="big">'+m.name+'</p><div class="row2" style="color:#C9D6CF"><span>≈'+km(m.key)+' км от виллы</span><span>≈'+mk.min+' мин</span></div><p style="font-size:14px">'+m.tip+'</p><a href="'+(m.src||gmap(m.key))+'">'+(m.src?'источник':'открыть на карте')+'</a></div>';
+  h+='<div class="box"><h5>В свободное время</h5><ul>'+x.free.map(function(f){return '<li><span>'+f[0]+'</span><small>'+f[1]+'</small></li>';}).join("")+'</ul></div>';
+  h+='<div class="box"><h5>Где поесть</h5><ul>'+x.food.map(function(f){return '<li><span><b style="font-weight:600">'+f[0]+'.</b> '+(f[2]?'<a href="'+f[2]+'">'+f[1]+'</a>':f[1])+'</span></li>';}).join("")+'</ul></div>';
+  h+='<div class="box"><h5>Взять</h5><p style="font-size:14px">'+x.bring+'</p><p style="font-size:13px;color:var(--muted)">'+x.note+'</p></div>';
+  return h;
+}
+var blocks=document.getElementById("dayBlocks");
+blocks.innerHTML=DAYS.map(function(x){
+  var tabs=x.scn.map(function(s,i){return '<button type="button" role="tab" aria-selected="'+(i===0)+'" data-s="'+i+'">'+(i===0?'А':String.fromCharCode(1041+i-1))+'. '+s.name+(s.rec?'<span class="rec">РЕКОМЕНДУЕМ</span>':'')+'</button>';}).join("");
+  return '<article class="day" id="day-'+x.n+'">'+
+    '<div class="day-head"><img class="bmimg" src="'+BM[x.n-1]+'" alt="Закладка 0'+x.n+' «'+x.word+'»: '+x.idea+' Вопрос дня: '+x.q+'"><div class="dh-txt"><div class="dh-top"><div><div class="eyebrow">Закладка 0'+x.n+' · '+x.dd+'</div><h3>'+x.word+'</h3></div>'+
+    '<div class="wxbox"><b>'+x.hi+'° / '+x.lo+'°</b><span>дождь '+x.p+'%</span><span>восход '+x.rise+' · закат '+x.set+'</span>'+(x.hunt?'<span class="pill hunt">'+x.hunt+'</span>':'<span class="pill ok">без охоты</span>')+'</div></div>'+
+    '<p class="idea">'+x.idea+'</p><div class="qday"><span>ВОПРОС ДНЯ</span><b>'+x.q+'</b></div></div><div class="tlwrap"></div></div>'+
+    '<div class="day-body"><div><div class="tabs" role="tablist" aria-label="Сценарии дня">'+tabs+'</div><p class="scn-note"></p><div class="mapwrap"></div><div class="actwrap"></div></div><aside class="side">'+sideHTML(x)+'</aside></div>'+
+  '</article>';
+}).join("");
+
+function proj(c){return [(c[1]-LAND.B[0])*LAND.k*LAND.sx,(LAND.B[3]-Math.max(c[0],LAND.B[1]+0.004))*LAND.sx];}
+function stopsOf(rows){var out=[];rows.forEach(function(r,i){var k=r[5];if(k&&P[k]&&(!out.length||out[out.length-1].k!==k))out.push({k:k,i:i,t:r[0]});});return out;}
+function dirLink(stops){
+  var o=VILLA[0]+","+VILLA[1],last=stops.length&&stops[stops.length-1].k==="adb";
+  var dest=last?P.adb.q:o, wp=stops.filter(function(s){return !(last&&s.k==="adb");}).slice(0,9).map(function(s){return P[s.k].q;});
+  return "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin="+encodeURIComponent(o)+"&destination="+encodeURIComponent(dest)+(wp.length?"&waypoints="+encodeURIComponent(wp.join("|")):"");
+}
+function mapHTML(x,s){
+  var stops=stopsOf(s.rows), eat=(x.eat||[]);
+  var vill=proj(VILLA), pts=[vill].concat(stops.map(function(st){return proj(P[st.k].c);}));
+  var all=pts.concat(eat.map(function(k){return proj(P[k].c);}));
+  var xs=all.map(function(p){return p[0];}),ys=all.map(function(p){return p[1];});
+  var x0=Math.min.apply(0,xs),x1=Math.max.apply(0,xs),y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);
+  var w=Math.max(x1-x0,90),h=Math.max(y1-y0,50),cx=(x0+x1)/2,cy=(y0+y1)/2;
+  w=Math.max(w,h*1.8)*1.35; h=w/1.8; var vx=cx-w/2,vy=cy-h/2, f=w/640;
+  var back=!(stops.length&&stops[stops.length-1].k==="adb");
+  var line=pts.map(function(p){return p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ");
+  var g='<svg viewBox="'+vx.toFixed(1)+' '+vy.toFixed(1)+' '+w.toFixed(1)+' '+h.toFixed(1)+'" role="img" aria-label="Схема движения: '+s.name+'">';
+  g+='<rect x="'+vx+'" y="'+vy+'" width="'+w+'" height="'+h+'" fill="#C9D2CB"/>';
+  g+='<path d="'+LAND.d+'" fill="#F4F0E7" stroke="#CFC8B9" stroke-width="1" vector-effect="non-scaling-stroke"/>';
+  if(stops.length){
+    g+='<polyline class="route" points="'+line+'" fill="none" stroke="#111F1A" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" pathLength="100"/>';
+    if(back){var lp=pts[pts.length-1];g+='<line x1="'+lp[0]+'" y1="'+lp[1]+'" x2="'+vill[0]+'" y2="'+vill[1]+'" stroke="#111F1A" stroke-width="1.5" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" opacity=".55"/>';}
+  }
+  var placed=[];eat.forEach(function(k){var p=proj(P[k].c).slice(),r=5*f;var ly=p[1]+14*f;placed.forEach(function(q){if(Math.abs(q[0]-p[0])<60*f&&Math.abs(q[1]-ly)<13*f)ly=q[1]+13*f;});placed.push([p[0],ly]);
+    g+='<g class="eatpt"><rect x="'+(p[0]-r)+'" y="'+(p[1]-r)+'" width="'+2*r+'" height="'+2*r+'" transform="rotate(45 '+p[0]+' '+p[1]+')" fill="#8C6C4B"/><text x="'+(p[0]+(p[0]>cx?-9:9)*f)+'" y="'+ly+'" text-anchor="'+(p[0]>cx?'end':'start')+'" font-size="'+(11*f)+'" fill="#8C6C4B" font-family="Avenir Next, Mulish, sans-serif" paint-order="stroke" stroke="#F4F0E7" stroke-width="'+(3*f)+'">'+P[k].n+'</text></g>';});
+  stops.forEach(function(st,j){var p=pts[j+1],r=10*f;
+    g+='<g class="stop" data-i="'+st.i+'"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="#F4F0E7" stroke="#111F1A" stroke-width="1.5" vector-effect="non-scaling-stroke"/><text x="'+p[0]+'" y="'+(p[1]+4*f)+'" text-anchor="middle" font-size="'+(11*f)+'" font-family="Avenir Next, Mulish, sans-serif" fill="#111F1A">'+(j+1)+'</text>'+
+      '<text x="'+(p[0]+(p[0]>cx?-14:14)*f)+'" y="'+(p[1]-8*f)+'" text-anchor="'+(p[0]>cx?'end':'start')+'" font-size="'+(12.5*f)+'" fill="#111F1A" font-family="Avenir Next, Mulish, sans-serif" font-weight="600" paint-order="stroke" stroke="#F4F0E7" stroke-width="'+(3*f)+'">'+P[st.k].n+(P[st.k].c[0]<LAND.B[1]?' ↓':'')+'</text></g>';});
+  var s2=22*f; g+='<g transform="translate('+(vill[0]-s2/2)+','+(vill[1]-s2/2)+') scale('+(s2/100)+')"><rect x="0" y="0" width="100" height="100" fill="#111F1A"/><circle cx="50" cy="30" r="13" fill="#D9C3A3"/></g>';
+  g+='<text x="'+(vill[0]+16*f)+'" y="'+(vill[1]+4*f)+'" font-size="'+(12.5*f)+'" font-family="Avenir Next, Mulish, sans-serif" font-weight="600" fill="#111F1A">вилла</text></svg>';
+  var chips=stops.map(function(st,j){return '<a class="stopchip" href="'+gmap(st.k)+'"><b>'+(j+1)+'</b> '+P[st.k].n+'</a>';}).join("")+
+    eat.map(function(k){return '<a class="stopchip eat" href="'+gmap(k)+'">◆ '+P[k].n+'</a>';}).join("");
+  return '<div class="map"><div class="map-svg">'+g+'</div>'+
+    '<div class="map-bar"><a class="gobtn" href="'+dirLink(stops)+'">Весь маршрут дня в Google Maps</a><button type="button" class="ghostbtn replay">Показать движение</button><span class="mapnote">Схема: линия показывает порядок остановок, берег упрощён. Дорогу и время строит Google Maps.</span></div>'+
+    (chips?'<div class="chips">'+chips+'</div>':'')+'</div>';
+}
+function render(art,x,si){
+  var s=x.scn[si];
+  art.querySelector(".tlwrap").innerHTML=timeline(x,s.rows);
+  art.querySelector(".scn-note").textContent=s.note;
+  art.querySelector(".mapwrap").innerHTML=mapHTML(x,s);
+  art.querySelector(".actwrap").innerHTML=actsHTML(s.rows);
+  var rb=art.querySelector(".replay");if(rb)rb.addEventListener("click",function(){var r=art.querySelector(".route");if(!r)return;r.classList.remove("draw");void r.getBoundingClientRect();r.classList.add("draw");});
+  var rt=art.querySelector(".route");if(rt)rt.classList.add("draw");
+  art.querySelectorAll(".tabs button").forEach(function(b){b.setAttribute("aria-selected",String(+b.dataset.s===si));});
+  art.querySelectorAll(".act").forEach(function(a){
+    a.addEventListener("mouseenter",function(){var seg=art.querySelector('.tl-seg[data-i="'+a.dataset.i+'"]');if(seg)seg.classList.add("focus");var st=art.querySelector('.stop[data-i="'+a.dataset.i+'"]');if(st)st.classList.add("on");});
+    a.addEventListener("mouseleave",function(){art.querySelectorAll(".tl-seg.focus,.stop.on").forEach(function(e){e.classList.remove("focus");e.classList.remove("on");});});
+  });
+}
+DAYS.forEach(function(x){
+  var art=document.getElementById("day-"+x.n);
+  render(art,x,0);
+  art.querySelectorAll(".tabs button").forEach(function(b){b.addEventListener("click",function(){render(art,x,+b.dataset.s);});});
+});
+
+/* ---------- рынки ---------- */
+var MK=[["Пн","Ильдыры","ildiri"],["Вт","Далян","dalyan"],["Ср","Центр Чешме, Рейсдере","cesme"],["Чт","Ылыджа","ilica"],["Пт","Чифтлик · Урла · Оваджык","ciftlik"],["Сб","Алачаты","alacati"],["Вс","Центр Чешме","cesme"]];
+var used={1:"ужин дома",2:"идём утром",3:"не успеваем, день пути",4:"идём, рядом термы",5:"Чифтлик утром",6:"идём к 10:00",7:"если рейс вечером"};
+document.getElementById("marketGrid").innerHTML=MK.map(function(m,i){
+  return '<div class="bath'+([1,3,5].indexOf(i)>=0?' pick':'')+'"><span class="eyebrow">'+m[0]+'</span><b>'+m[1]+'</b><span class="mono muted">≈'+km(m[2])+' км · ≈'+P[m[2]].min+' мин</span><span>'+used[i+1]+'</span><a href="'+gmap(m[2])+'">на карте</a></div>';
+}).join("");
+
+/* ---------- закладки ---------- */
+document.getElementById("marksGrid").innerHTML=DAYS.map(function(x){
+  return '<a class="bmk" href="#day-'+x.n+'"><img src="'+BM[x.n-1]+'" alt="Закладка 0'+x.n+' «'+x.word+'»: '+x.idea+' Вопрос дня: '+x.q+'" loading="lazy"><span>'+x.dow+' '+parseInt(x.date.slice(8),10)+' · '+x.word+'</span></a>';
+}).join("");
+document.getElementById("obMarks").innerHTML=DAYS.map(function(x){return '<a href="#day-'+x.n+'" title="'+x.dow+' · '+x.word+'"><img src="'+BM[x.n-1]+'" alt="'+x.word+'"></a>';}).join("");
+})();
+</script>
+</body>
+</html>
