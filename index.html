@@ -215,6 +215,7 @@ footer{padding:40px 0 64px;border-top:1px solid var(--line);font-size:13px;color
 footer ul{columns:2;column-gap:32px;padding-left:18px}
 @media (max-width:760px){footer ul{columns:1}}
 footer li{margin-bottom:6px;break-inside:avoid}
+.wxbox{max-width:280px}.wxbox span{white-space:normal}.chip-day .wx{flex-wrap:wrap;gap:4px 8px}.chip-day .wx span:last-child{font-size:11px}.weather-update{max-width:850px}
 </style>
 </head>
 <body>
@@ -248,7 +249,7 @@ footer li{margin-bottom:6px;break-inside:avoid}
     <div class="wrap">
       <div class="sec-head">
         <div><div class="eyebrow">Неделя</div><h2>Один взгляд на семь дней</h2></div>
-        <p>Полоски — нагрузка дня. Цифры — прогноз на утро 9 ноября: днём и ночью, вероятность дождя. Нажмите на день, чтобы перейти к его блоку.</p>
+        <p>Полоски показывают нагрузку дня. Погода на 10–15 ноября: максимум и минимум температуры за сутки. Нажмите на день, чтобы перейти к его блоку.</p><p class="weather-update" style="font-size:13px;margin-top:12px">Проверено <time datetime="2026-11-10T20:55:00Z">10 ноября 2026, 23:55</time> (Чешме, UTC+3). Температура и условия получены из погодной сводки; поставщик и время выпуска в ней не указаны. Вероятность осадков не подтверждена, поэтому проценты не показаны. За 9 ноября архивные данные не проверены. <a href="https://www.accuweather.com/en/tr/cesme/1-318263_1_al/10-day-weather-forecast/1-318263_1_al">Проверить прогноз в AccuWeather</a>. Перед выходом сверяйте дождь и ветер.</p>
       </div>
       <div class="strip" id="strip"></div>
     </div>
@@ -339,7 +340,7 @@ footer li{margin-bottom:6px;break-inside:avoid}
 
 <footer>
   <div class="wrap">
-    <p><b style="color:var(--ink)">Источники.</b> Проверено 7–9 ноября 2026. Всё со знаком ≈ — наша оценка. Расстояние «≈ км» — по прямой от виллы, умноженное на 1,3.</p>
+    <p><b style="color:var(--ink)">Источники.</b> Программа: проверено 7–9 ноября 2026. Погода обновлена 10 ноября 2026; дата проверки и ограничения указаны в разделе «Неделя». Всё со знаком ≈ — наша оценка. Расстояние «≈ км» — по прямой от виллы, умноженное на 1,3.</p>
     <ul>
       <li><a href="https://thespaceretreat.com/retreats/signal-noise">The Space Retreat · Signal / Noise — сайт ретрита</a></li>
       <li><a href="https://www.cesme.bel.tr/bazaars-en">Рынки Чешме — муниципалитет</a></li>
@@ -420,7 +421,7 @@ var BM=["img/bm1.webp","img/bm2.webp","img/bm3.webp","img/bm4.webp","img/bm5.web
 var DAYS=[
 {eat:[],n:1,date:"2026-11-09",dow:"Пн",dd:"понедельник, 9 ноября",word:"Порог",sign:"porog",load:0,bm:"#E6DDCB",bf:"#111F1A",
  idea:"Необязательно нести дальше всё, что было с тобой до этой недели.",q:"Что я оставляю за порогом этой недели?",
- hi:16,lo:9,p:10,rise:"07:49",set:"18:07",hunt:"",
+ hi:null,lo:null,p:null,wxShort:"Архив не проверен",wx:"День прошёл; архивные данные не подтверждены",rise:"07:49",set:"18:07",hunt:"",
  scn:[
   {name:"Приезд",rec:1,note:"Сегодня никуда не едем: дорога, сад, первый закат, первый стол.",rows:[
    ["13:30",75,"road","Дорога из аэропорта","Две машины, по рейсам","adb"],
@@ -442,7 +443,7 @@ var DAYS=[
 
 {eat:[],n:2,date:"2026-11-10",dow:"Вт",dd:"вторник, 10 ноября",word:"Тело",sign:"telo",load:1,bm:"#F4EFE4",bf:"#111F1A",
  idea:"Тело часто замечает раньше, чем мы успеваем назвать.",q:"Что я замечаю в теле, когда перестаю торопиться?",
- hi:17,lo:13,p:20,rise:"07:50",set:"18:06",hunt:"охота только на кабана",
+ hi:17,lo:14,p:null,wxShort:"Облачно с прояснениями",wx:"Облачно с прояснениями",rise:"07:50",set:"18:06",hunt:"охота только на кабана",
  scn:[
   {name:"Германджик и закат в Эритрах",rec:1,eat:["mutlu","alinin"],note:"Почему сегодня так: завтра 18 км, поэтому сегодня мало ходьбы и много вкуса и вида. Логика дня — медленно: медленная еда в первой Slow Food деревне Турции, медленный подъём на акрополь, закат над островами. Всё в радиусе 35 минут от виллы, домой к 19:15. Кафе в деревне домашние: часов и телефонов в открытых источниках нет, звоним до выезда.",rows:[
    ["08:30",60,"practice","Практика «Тело»","Мягко: стопы, суставы, спина, дыхание. <b>Зачем:</b> тема дня — замечать тело, а завтра 18 км, поэтому ноги не перегружаем."],
@@ -481,7 +482,7 @@ var DAYS=[
 
 {eat:["yengec","akin"],n:3,date:"2026-11-11",dow:"Ср",dd:"среда, 11 ноября",word:"Путь",sign:"put",load:3,bm:"#17211C",bf:"#F4F0E7",
  idea:"Дорога не требует ответа. Она предлагает продолжать идти.",q:"Что стало слышно, когда мне не нужно было отвечать?",
- hi:20,lo:14,p:15,rise:"07:51",set:"18:05",hunt:"охотничий день",
+ hi:21,lo:17,p:null,wxShort:"Утром дожди",wx:"Утром кратковременные дожди, затем прояснения",rise:"07:51",set:"18:05",hunt:"охотничий день",
  scn:[
   {name:"Дикие бухты Урлы",rec:1,note:"Кольцо 18,3 км, ≈6 ч ходу, средняя сложность. Короткий скальный участок, крутой спуск, воды нет. Идём с гидом или после разведки.",rows:[
    ["07:00",30,"practice","Стопы, ноги, дыхание",""],
@@ -508,12 +509,12 @@ var DAYS=[
  market:{key:"cesme",name:"Центр Чешме и Рейсдере",day:"ср",tip:"В день пути не успеваем. Пригодится в сценарии «поменять с четвергом»."},
  free:[["Купание на пляже, если тепло","20 мин"],["Пристань Урлы на закате","30 мин"],["Ранний сон","обязательно"]],
  food:[["Утро","Только чай или кофе на вилле",null],["Завтрак","На пляже из рюкзаков, по возможности",null],["Ужин","Yengeç, Урла-Искеле: дом 1860 года, больше ста мезе","https://yemek.com/urla-mekanlari/"],["Ужин","Akın'ın Yeri, Озбек: рыба с 1970-х","https://yemek.com/urla-mekanlari/"]],
- bring:"Минимум: 2–3 л воды, еда на завтрак у моря и перекус, треккинговая обувь с протектором, ветровка (утром 14°, в бухтах ветер), яркая вещь (день охоты), кепка и крем от солнца, купальник и маленькое полотенце, заряженный телефон с треком. Хорошо бы: палки на крутой спуск, пластыри, фонарик.",
+ bring:"Минимум: 2–3 л воды, еда на завтрак у моря и перекус, треккинговая обувь с протектором, ветровка (прохладное утро, в бухтах ветер), яркая вещь (день охоты), кепка и крем от солнца, купальник и маленькое полотенце, заряженный телефон с треком. Хорошо бы: палки на крутой спуск, пластыри, фонарик.",
  note:"Охотничий день: только тропа, все в ярком, держимся вместе."},
 
 {eat:["kumru"],n:4,date:"2026-11-12",dow:"Чт",dd:"четверг, 12 ноября",word:"Вода и огонь",sign:"voda",load:0,bm:"#7E8B80",bf:"#111F1A",
  idea:"Не всё, что когда-то защищало, нужно сохранять навсегда.",q:"Какой старый паттерн когда-то меня защищал, но теперь забирает слишком много сил?",
- hi:21,lo:19,p:20,rise:"07:52",set:"18:04",hunt:"",
+ hi:22,lo:18,p:null,wxShort:"Дождь и ветер",wx:"Утром кратковременные дожди, затем преимущественно облачно и ветрено",rise:"07:52",set:"18:04",hunt:"",
  scn:[
   {name:"Термы и огонь",rec:1,note:"После пути: вода и жар днём, огонь в саду вечером. Каждый сжигает листок со старым паттерном.",rows:[
    ["09:00",45,"food","Поздний завтрак",""],
@@ -551,7 +552,7 @@ var DAYS=[
 
 {eat:["germcafe"],n:5,date:"2026-11-13",dow:"Пт",dd:"пятница, 13 ноября",word:"Святилище",sign:"svyat",load:1,bm:"#2C4436",bf:"#F4F0E7",
  idea:"Иногда мы уже знаем. Просто это знание говорит тихо.",q:"Что я уже знаю о себе, но продолжаю заглушать шумом?",
- hi:21,lo:20,p:25,rise:"07:53",set:"18:04",hunt:"",
+ hi:22,lo:17,p:null,wxShort:"Сильный ветер",wx:"Переменная облачность, сильный ветер",rise:"07:53",set:"18:04",hunt:"",
  scn:[
   {name:"Эритры на закате",rec:1,note:"Ближнее святилище: храм Афины Полиады и место Сивиллы Эритрейской. Небольшой хайк к акрополю и закат над островами.",rows:[
    ["08:30",45,"practice","Практика",""],
@@ -586,7 +587,7 @@ var DAYS=[
 
 {eat:["yusuf","kostemr","asma"],n:6,date:"2026-11-14",dow:"Сб",dd:"суббота, 14 ноября",word:"Земля",sign:"zemlya",load:1,bm:"#D7C4A0",bf:"#111F1A",
  idea:"То, чему мы даём внимание, получает возможность расти.",q:"Чему я хочу дать больше места?",
- hi:22,lo:17,p:15,rise:"07:55",set:"18:03",hunt:"охотничий день",
+ hi:23,lo:16,p:null,wxShort:"Солнце и ветер",wx:"Преимущественно солнечно и ветрено",rise:"07:55",set:"18:03",hunt:"охотничий день",
  scn:[
   {name:"Рынок и прощальный стол",rec:1,note:"Субботний рынок Алачаты, готовим вместе из того, что выросло здесь, прощальный ужин в саду.",rows:[
    ["08:30",45,"practice","Практика",""],
@@ -619,7 +620,7 @@ var DAYS=[
 
 {eat:[],n:7,date:"2026-11-15",dow:"Вс",dd:"воскресенье, 15 ноября",word:"Возвращение",sign:"vozvr",load:0,bm:"#17211C",bf:"#F4F0E7",
  idea:"Возвращение начинается не с ответа, а с внимания.",q:"Что я забираю с собой?",
- hi:18,lo:13,p:15,rise:"07:56",set:"18:02",hunt:"охотничий день",
+ hi:20,lo:13,p:null,wxShort:"Местами дожди",wx:"Переменная облачность, кратковременные дожди преимущественно утром",rise:"07:56",set:"18:02",hunt:"охотничий день",
  scn:[
   {name:"Утро и дорога",rec:1,note:"Последняя практика, круг и аэропорт.",rows:[
    ["08:00",45,"practice","Последняя практика",""],
@@ -643,13 +644,15 @@ var DAYS=[
  note:"Утро проводим дома."}
 ];
 
+/* Weather checked 2026-11-10T20:55:00Z for Çeşme; probabilities unavailable. */
+function wxTemp(x){return x.hi===null?'День прошёл':x.hi+'° / '+x.lo+'°';}
 /* ---------- лента недели ---------- */
 var d=new Date(),TODAY=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 document.getElementById("strip").innerHTML=DAYS.map(function(x){
   var l='<span class="load">'+[1,2,3].map(function(i){return '<i class="'+(i<=x.load?'on':'')+'"></i>';}).join("")+'</span>';
   return '<a class="chip-day'+(x.date===TODAY?' today':'')+'" href="#day-'+x.n+'">'+(x.date===TODAY?'<span class="today-tag">СЕГОДНЯ</span>':'')+
     '<span class="d">'+x.dow+' · '+parseInt(x.date.slice(8),10)+' ноября</span><img class="th" src="'+BM[x.n-1]+'" alt=""><span class="w">'+x.word+'</span>'+l+
-    '<span class="wx"><span>'+x.hi+'°/'+x.lo+'°</span><span>☂ '+x.p+'%</span></span></a>';
+    '<span class="wx"><span>'+wxTemp(x)+'</span><span>'+x.wxShort+'</span></span></a>';
 }).join("");
 
 /* ---------- блоки дней ---------- */
@@ -693,7 +696,7 @@ blocks.innerHTML=DAYS.map(function(x){
   var tabs=x.scn.map(function(s,i){return '<button type="button" role="tab" aria-selected="'+(i===0)+'" data-s="'+i+'">'+(i===0?'А':String.fromCharCode(1041+i-1))+'. '+s.name+(s.rec?'<span class="rec">РЕКОМЕНДУЕМ</span>':'')+'</button>';}).join("");
   return '<article class="day" id="day-'+x.n+'">'+
     '<div class="day-head"><img class="bmimg" src="'+BM[x.n-1]+'" alt="Закладка 0'+x.n+' «'+x.word+'»: '+x.idea+' Вопрос дня: '+x.q+'"><div class="dh-txt"><div class="dh-top"><div><div class="eyebrow">Закладка 0'+x.n+' · '+x.dd+'</div><h3>'+x.word+'</h3></div>'+
-    '<div class="wxbox"><b>'+x.hi+'° / '+x.lo+'°</b><span>дождь '+x.p+'%</span><span>восход '+x.rise+' · закат '+x.set+'</span>'+(x.hunt?'<span class="pill hunt">'+x.hunt+'</span>':'<span class="pill ok">без охоты</span>')+'</div></div>'+
+    '<div class="wxbox"><b>'+wxTemp(x)+'</b><span>'+x.wx+'</span><span>восход '+x.rise+' · закат '+x.set+'</span>'+(x.hunt?'<span class="pill hunt">'+x.hunt+'</span>':'<span class="pill ok">без охоты</span>')+'</div></div>'+
     '<p class="idea">'+x.idea+'</p><div class="qday"><span>ВОПРОС ДНЯ</span><b>'+x.q+'</b></div></div><div class="tlwrap"></div></div>'+
     '<div class="day-body"><div><div class="tabs" role="tablist" aria-label="Сценарии дня">'+tabs+'</div><p class="scn-note"></p><div class="mapwrap"></div><div class="actwrap"></div></div><aside class="side">'+sideHTML(x)+'</aside></div>'+
   '</article>';
