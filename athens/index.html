@@ -126,6 +126,29 @@ main{max-width:980px;margin:0 auto;padding:0 14px 60px}
 .sec{font-size:clamp(28px,5vw,38px);margin:34px 4px 12px}
 footer{font-size:12px;color:var(--mute);margin-top:30px;padding:0 4px}
 footer a{color:var(--sea)}
+
+.cmp{margin:20px 0 6px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:6px 16px 16px}
+.cmp summary{cursor:pointer;font:600 26px var(--serif);padding:12px 0 8px;list-style:none}
+.cmp summary::-webkit-details-marker{display:none}
+.cmp summary::after{content:" ▾";color:var(--terra)}
+.cmp[open] summary::after{content:" ▴"}
+.cmp .two{display:grid;gap:12px}
+@media(min-width:700px){.cmp .two{grid-template-columns:1fr 1fr}}
+.cmp .v{border:1.5px solid var(--line);border-radius:16px;padding:14px}
+.cmp .v.best{border-color:var(--terra);background:#fff7f3}
+.cmp .v h3{font-size:25px}
+.cmp .v .tag{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--terra)}
+.cmp ul{margin:8px 0 0;padding:0;list-style:none;font-size:14.5px}
+.cmp li{padding:4px 0 4px 22px;position:relative}
+.cmp li.p::before{content:"+";position:absolute;left:4px;font-weight:700;color:var(--olive)}
+.cmp li.m::before{content:"–";position:absolute;left:4px;font-weight:700;color:var(--terra)}
+.cmp .who{font-size:14px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.cmp .verdict{margin-top:14px;background:var(--deep);color:#fff;border-radius:16px;padding:16px}
+.cmp .verdict h3{font-size:25px;color:#ffd9a0;margin-bottom:6px}
+.cmp .verdict p{margin:6px 0 0;font-size:15px}
+.cmp table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:14px}
+.cmp th,.cmp td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 </style>
 </head>
 <body>
@@ -156,6 +179,57 @@ footer a{color:var(--sea)}
 </div></div>
 
 <main>
+  <details class="cmp" open>
+    <summary>Какой вариант выбрать</summary>
+    <div class="two">
+      <div class="v">
+        <div class="tag">Вариант 1 · ночёвки дома</div>
+        <h3>Море и закат + Нафплион одним днём</h3>
+        <ul>
+          <li class="p"><b>Самый «кабриолетный» день</b> — приморская дорога на Сунион с открытой крышей есть только здесь.</li>
+          <li class="p">Купание в тёплом озере в ноябре и закат у храма Посейдона — два впечатления, которых во втором варианте нет вообще.</li>
+          <li class="p">Не нужен отель, вещи остаются дома, вечером своя кровать.</li>
+          <li class="p">Гибкость: если в среду погода или настроение не то — день в Нафплионе можно отменить без потерь.</li>
+          <li class="m">Среда тяжёлая: 4–5 часов за рулём и около 290 км за один день.</li>
+          <li class="m">Обратно из Нафплиона — в темноте (закат в 17:10, а ехать до 19–20).</li>
+          <li class="m">В Нафплионе всего 4–5 часов и без вечера — а вечер там лучшее время.</li>
+          <li class="m">Ночная парковка кабриолета в центре Афин и возвращение вечером 17 ноября, когда в центре перекрытия.</li>
+        </ul>
+        <div class="who"><b>Почему так:</b> два коротких разных сюжета вместо одного длинного. Выбирайте, если море, купание и закат на Сунионе для вас важнее старого города.</div>
+        <div class="acts"><button class="btn ghost" data-go="1">Смотреть вариант 1</button></div>
+      </div>
+      <div class="v best">
+        <div class="tag">Вариант 2 · ночь в Нафплионе · мой выбор</div>
+        <h3>Маленькое путешествие</h3>
+        <ul>
+          <li class="p"><b>Спокойный ритм:</b> около 2 часов за рулём в первый день и 3 — во второй, вместо 4–5 за один.</li>
+          <li class="p"><b>Ни одного ночного перегона</b> — вся дорога при свете, а в ноябре это важно.</li>
+          <li class="p">Вечер и утро в Нафплионе: закат у Бурдзи, ужин без оглядки на руль, пустой город на рассвете.</li>
+          <li class="p">Добавляется Эпидавр и прибрежная дорога обратно — её нет в первом варианте.</li>
+          <li class="p">Вечером 17 ноября вы вообще не в Афинах — перекрытия вас не касаются.</li>
+          <li class="m">Нет озера Вульягмени и заката на Сунионе.</li>
+          <li class="m">Расход на отель (ориентир — от €100–130 за ночь) и нужно собрать сумку.</li>
+          <li class="m">Меньше свободы передумать: отель привязывает к маршруту.</li>
+        </ul>
+        <div class="who"><b>Почему так:</b> Нафплион раскрывается вечером, а длинная дорога делится пополам. Выбирайте, если хочется отдохнуть и «пожить» в красивом месте, а не успеть.</div>
+        <div class="acts"><button class="btn" data-go="2">Смотреть вариант 2</button></div>
+      </div>
+    </div>
+    <table>
+      <tr><th></th><th>Вариант 1</th><th>Вариант 2</th></tr>
+      <tr><td>За рулём</td><td>≈ 2,5 ч + 4–5 ч</td><td>≈ 2 ч + 3 ч</td></tr>
+      <tr><td>В темноте</td><td>оба вечера</td><td>нет</td></tr>
+      <tr><td>Море и купание</td><td>да, озеро</td><td>только прогулки</td></tr>
+      <tr><td>Античность</td><td>Сунион</td><td>Эпидавр</td></tr>
+      <tr><td>Нафплион</td><td>4–5 часов днём</td><td>день, вечер и утро</td></tr>
+      <tr><td>Доп. расходы</td><td>—</td><td>отель</td></tr>
+    </table>
+    <div class="verdict">
+      <h3>Что лучше</h3>
+      <p><b>Я бы выбрала вариант 2.</b> В ноябре световой день короткий, и вариант 1 во второй день превращается в гонку: полтора часа дороги домой в темноте после самого насыщенного дня. С ночёвкой тот же Нафплион получается в два раза длиннее и в два раза спокойнее, плюс Эпидавр.</p>
+      <p><b>Вариант 1 лучше в одном случае:</b> если поплавать в озере и увидеть закат на Сунионе — это то, ради чего вы берёте кабриолет. Тогда оставьте вторник как есть, а среду решайте утром по силам.</p>
+    </div>
+  </details>
   <section class="intro" id="intro"></section>
   <div id="map"></div>
   <p class="mapnote">Линия маршрута схематичная — для точной навигации нажимайте «Вести сюда» в карточке. Номера на карте совпадают с номерами остановок.</p>
@@ -272,6 +346,12 @@ var E={
   {n:"Paleo Archontiko",k:"таверна в особняке · €€",d:"Особняк XIX века, самая атмосферная традиционная комната в городе.",q:"Paleo Archontiko Nafplio"},
   {n:"Savouras",k:"рыба · €€€",d:"Рыбная таверна у воды: выбрать рыбу с витрины.",q:"Savouras Nafplio"},
   {n:"Alaloum",k:"Пелопоннес · €€",d:"Местная кухня большими порциями.",q:"Alaloum Nafplio"}]},
+ hNaf:{t:"Где переночевать",s:"Старый город или вплотную к нему: машину оставить на бесплатной парковке у порта и дальше пешком. Наличие на 17 ноября не проверено — бронируйте с бесплатной отменой.",o:[
+  {n:"3Sixty Hotel & Suites",k:"бутик · от ≈ €100–130",d:"Отреставрированный особняк в старом городе, самый стильный адрес; внизу ресторан и винный бар. Мой первый выбор.",q:"3Sixty Hotel & Suites Nafplio"},
+  {n:"Amfitriti Palazzo",k:"вид сверху",d:"Маленький люкс высоко на склоне: панорама города и крепостей. Подъём по ступеням — сумку берите лёгкую.",q:"Amfitriti Palazzo Nafplio"},
+  {n:"Amphitryon Hotel",k:"море с балкона",d:"Современный отель на самой набережной: у номеров балконы на залив и Бурдзи. Меньше «старины», больше комфорта.",q:"Amphitryon Hotel Nafplio"},
+  {n:"Aetoma",k:"пансион у порта",d:"Уютный пансион в переулке старого города рядом с портом и парковкой; завтрак с домашней выпечкой.",q:"Aetoma Hotel Nafplio"},
+  {n:"Pension Dafni",k:"бюджетно",d:"Аккуратный пансион под Паламиди, 200 м от пляжа Арванития: чисто, мило, недорого.",q:"Pension Dafni Nafplio"}]},
  bNaf:{t:"Завтрак без спешки",s:"Выезд к Эпидавру около 09:50.",o:[
   {n:"Aktaion",k:"с 07:30",d:"Кафе с 1955 года на набережной: «греческий» завтрак, омлеты, вид на Бурдзи.",q:"Aktaion Nafplio"},
   {n:"Iliostasio",k:"вид на порт",d:"Хороший кофе, свежий апельсиновый сок и сытный завтрак напротив крепости.",q:"Iliostasio Nafplio"},
@@ -311,7 +391,7 @@ var S={
  back1:{h:"Обратно в Афины",c:C.ath,ph:"canalair",tx:"Выехать не позже 16:00: первый час дороги ещё при свете. Заправка — на трассе до въезда в город.",
   look:["Залить бак до уровня, с которым брали","Сфотографировать приборную панель и машину при сдаче"],info:["≈ 1 ч 50 мин","возврат 19:00–20:00"]},
  check:{h:"Заселение и отдых",c:C.naf,ph:"bourtzi2",tx:"Оставьте машину у порта, вещи — в отеле, и дайте себе час тишины перед закатом.",
-  look:["Берите отель в старом городе или вплотную к нему — машина не понадобится до утра","Номер с балконом на залив здесь стоит доплаты"],info:["отель не забронирован","парковка у порта"]},
+  look:["Берите отель в старом городе или вплотную к нему — машина не понадобится до утра","Номер с балконом на залив здесь стоит доплаты"],info:["отель не забронирован","бесплатная парковка у порта"]},
  sunset:{h:"Закат у моря",c:C.bour,ph:"bourtzi",tx:"Прогулка по набережной и вокруг Акронафплии, когда крепость Бурдзи и горы за заливом розовеют.",
   look:["Дойдите до маяка в конце мола — Бурдзи оттуда совсем близко","Закат около 17:15, потом зажигают подсветку Паламиди над городом","Аперитив на набережной в этот час — обязательная программа"],info:["16:30–17:30","всё пешком"]},
  epi:{h:"Античный театр Эпидавра",c:C.epi,ph:"epi",tx:"Самый совершенный театр древнего мира, IV век до н.э., около 14 000 мест среди сосновых холмов.",
@@ -347,7 +427,7 @@ var V={
  2:{name:"Ночь в Нафплионе",days:[
   {title:"Через канал — в Нафплион",lead:"Утром в дорогу, днём крепость, вечером никуда не ехать: закат у моря и ужин в старом городе.",
    facts:["≈ 145 км","за рулём ≈ 2 ч","+ отель"],road:ROAD.toNaf,
-   items:[["s","car","09:00","09:30"],["e","bAth"],["s","canal","10:15","10:35"],["s","pal","11:45","13:15"],["e","lNaf"],["s","check","14:45","16:15"],["s","sunset","16:30","17:30"],["x","arv"],["e","dNaf"],["s","town","20:30","22:00"]]},
+   items:[["s","car","09:00","09:30"],["e","bAth"],["s","canal","10:15","10:35"],["s","pal","11:45","13:15"],["e","lNaf"],["e","hNaf"],["s","check","14:45","16:15"],["s","sunset","16:30","17:30"],["x","arv"],["e","dNaf"],["s","town","20:30","22:00"]]},
   {title:"Эпидавр и дорога вдоль моря",lead:"Спокойное утро, великий театр в соснах, обед в рыбацкой гавани и красивая дорога обратно.",
    facts:["≈ 185 км","за рулём ≈ 3 ч","возврат 18–19"],road:ROAD.viaEpi,
    items:[["e","bNaf"],["x","boat"],["s","epi","10:30","12:15"],["s","pe","12:45","14:15"],["e","lEpi"],["x","small"],["s","back2","14:30","18:30"],["e","dAth2"]]}
@@ -428,6 +508,7 @@ function renderPlan(day){
 document.addEventListener("click",function(ev){
   var t=ev.target;
   if(t.closest("[data-stop]"))return;
+  var g=t.closest("[data-go]");if(g){st.v=+g.dataset.go;st.d=0;save();render();window.scrollTo({top:document.getElementById("intro").offsetTop-110,behavior:"smooth"});return;}
   var b=t.closest("#vseg button");if(b){st.v=+b.dataset.v;save();render();return;}
   b=t.closest("#dseg button");if(b){st.d=+b.dataset.d;save();render();window.scrollTo({top:document.getElementById("intro").offsetTop-110,behavior:"smooth"});return;}
   b=t.closest("[data-pick]");if(b){var k=b.dataset.pick,i=+b.dataset.i;if(st.pick[k]===i)delete st.pick[k];else st.pick[k]=i;save();var y=window.scrollY;render();window.scrollTo(0,y);return;}
