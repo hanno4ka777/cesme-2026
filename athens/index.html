@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Афины · два дня с открытой крышей</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{
+  --ink:#16242f; --sea:#0f3d52; --deep:#0a2a3a; --foam:#f6f1e7; --sand:#ebe2d0; --card:#fffdf8;
+  --terra:#c8553d; --olive:#6b7a4b; --gold:#d9a441; --mute:#6c7780; --line:#dfd5c0;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--foam);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;margin:0}
+
+/* hero */
+.hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;color:#fff;background:linear-gradient(160deg,#0a2a3a,#0f3d52 55%,#c8553d);overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,42,58,.25) 0%,rgba(10,42,58,.1) 35%,rgba(10,42,58,.88) 100%)}
+.hero-in{position:relative;z-index:2;padding:28px 22px 34px;max-width:980px;margin:0 auto;width:100%}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;opacity:.9}
+.hero h1{font-size:clamp(44px,11vw,92px);margin:10px 0 12px;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;font-weight:500;color:#ffd9a0}
+.hero p{max-width:560px;margin:0 0 18px;font-size:17px;opacity:.95}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600}
+
+/* sticky controls */
+.bar{position:sticky;top:0;z-index:900;background:rgba(246,241,231,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:980px;margin:0 auto;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--sand);border-radius:14px;padding:4px;gap:4px}
+.seg button{border:0;background:transparent;font:inherit;font-weight:700;font-size:14px;padding:10px 8px;border-radius:11px;color:var(--mute);cursor:pointer;line-height:1.2}
+.seg button small{display:block;font-weight:500;font-size:11.5px;opacity:.85}
+.seg button.on{background:var(--sea);color:#fff;box-shadow:0 2px 8px rgba(15,61,82,.3)}
+.seg.days button.on{background:var(--terra)}
+
+main{max-width:980px;margin:0 auto;padding:0 14px 60px}
+.intro{margin:22px 4px 14px}
+.intro h2{font-size:clamp(30px,6vw,44px)}
+.intro p{margin:8px 0 0;color:#3b4852;max-width:640px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 11px;font-size:13px;font-weight:600}
+
+#map{height:340px;border-radius:18px;border:1px solid var(--line);margin:14px 0 6px;background:#d7e4e6;z-index:1}
+.mapnote{font-size:12px;color:var(--mute);margin:0 4px 18px}
+.pin{width:30px;height:30px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--terra);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+.pin b{transform:rotate(45deg);color:#fff;font:700 13px var(--sans)}
+.pin.opt{background:var(--olive)}
+
+/* timeline */
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(180deg,var(--terra) 0 6px,transparent 6px 12px)}
+.stop{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 0 rgba(22,36,47,.03)}
+.stop::before{content:attr(data-n);position:absolute;left:-29px;top:18px;width:26px;height:26px;border-radius:50%;background:var(--terra);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;border:3px solid var(--foam)}
+.stop.now{border-color:var(--terra);box-shadow:0 0 0 3px rgba(200,85,61,.18)}
+.stop.done{opacity:.55}
+.ph{position:relative;aspect-ratio:16/8;background:linear-gradient(135deg,#0f3d52,#3d7f8f 60%,#d9a441)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .t{position:absolute;left:12px;top:12px;background:rgba(10,42,58,.82);color:#fff;border-radius:999px;padding:5px 12px;font-weight:700;font-size:13px}
+.ph .nowb{position:absolute;right:12px;top:12px;background:var(--terra);color:#fff;border-radius:999px;padding:5px 12px;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.ph .cr{position:absolute;right:8px;bottom:6px;font-size:10px;color:#fff;opacity:.8;text-shadow:0 1px 2px #000;text-decoration:none}
+.bd{padding:16px 16px 14px}
+.bd .t2{font-size:13px;font-weight:700;color:var(--terra);margin-bottom:4px}
+.bd h3{font-size:30px}
+.bd p{margin:8px 0 0}
+.look{margin:12px 0 0;padding:0;list-style:none}
+.look li{position:relative;padding:5px 0 5px 22px;border-top:1px dashed var(--line);font-size:14.5px}
+.look li::before{content:"✦";position:absolute;left:2px;color:var(--gold)}
+.lk{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-top:14px}
+.info{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.info span{background:var(--sand);border-radius:8px;padding:4px 9px;font-size:12.5px;font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:12px;padding:10px 14px;font:700 14px var(--sans);text-decoration:none;border:1px solid var(--sea);background:var(--sea);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--sea)}
+.btn.ok{border-color:var(--olive);background:transparent;color:var(--olive)}
+.done .btn.ok{background:var(--olive);color:#fff}
+
+/* choice blocks */
+.pick{background:#fff7ea;border:1px solid #ecd9b4;border-radius:20px;padding:14px;margin-bottom:16px;position:relative}
+.pick::before{content:"";position:absolute;left:-22px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:3px solid var(--foam)}
+.pick h4{margin:0 0 2px;font:600 24px var(--serif)}
+.pick .sub{font-size:13px;color:var(--mute);margin-bottom:10px}
+.opts{display:grid;gap:8px}
+@media(min-width:700px){.opts{grid-template-columns:1fr 1fr}}
+.opt{display:block;text-align:left;width:100%;font:inherit;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:11px 12px 10px;cursor:pointer;color:inherit}
+.opt.on{border-color:var(--terra);background:#fff;box-shadow:0 0 0 3px rgba(200,85,61,.14)}
+.opt .nm{font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.opt .nm i{font-style:normal;font-size:12px;color:var(--mute);font-weight:600;white-space:nowrap}
+.opt .ds{font-size:13.5px;color:#3b4852;margin-top:3px}
+.opt .ft{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12.5px}
+.opt .ft a{color:var(--sea);font-weight:700}
+.opt .ft em{font-style:normal;color:var(--terra);font-weight:700}
+.warn{font-size:12.5px;color:#8a5a12;margin-top:8px}
+
+/* extras */
+.extra{border:1.5px dashed var(--olive);border-radius:20px;padding:14px;margin-bottom:16px;background:#f4f5ea;position:relative}
+.extra::before{content:"+";position:absolute;left:-25px;top:18px;width:18px;height:18px;border-radius:50%;background:var(--olive);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;border:3px solid var(--foam)}
+.extra h4{margin:0;font:600 22px var(--serif)}
+.extra p{margin:6px 0 10px;font-size:14px}
+.extra.on{border-style:solid;background:#e9eed6}
+
+/* my plan */
+.plan{background:var(--deep);color:#fff;border-radius:22px;padding:20px 18px;margin:26px 0}
+.plan h2{font-size:34px}
+.plan ol{margin:12px 0 14px;padding-left:20px}
+.plan li{padding:3px 0;font-size:15px}
+.plan li span{opacity:.65;font-size:13px}
+.plan li.eat{color:#ffd9a0}
+.plan .btn{background:var(--gold);border-color:var(--gold);color:var(--deep)}
+.plan .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+
+.grid{display:grid;gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+.note{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.note h3{font-size:24px;margin-bottom:6px}
+.note ul{margin:0;padding-left:18px;font-size:14.5px}
+.note li{margin:4px 0}
+.sec{font-size:clamp(28px,5vw,38px);margin:34px 4px 12px}
+footer{font-size:12px;color:var(--mute);margin-top:30px;padding:0 4px}
+footer a{color:var(--sea)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img id="heroimg" alt="Храм Посейдона на мысе Сунион на закате">
+  <div class="hero-in">
+    <div class="kicker">Афины · 17–18 ноября · Mini Cabrio</div>
+    <h1>Два дня<br><em>с открытой крышей</em></h1>
+    <p>Живой путеводитель: выбирайте вариант, день и где поесть — карта и «мой план» перестроятся сами. Каждую точку можно открыть в навигаторе одним касанием.</p>
+    <div class="chips">
+      <span class="chip">Вт 17.11 · до +22° · дождь 10%</span>
+      <span class="chip">Ср 18.11 · +21…22° · дождь 10–30%</span>
+      <span class="chip">Закат ≈ 17:10</span>
+    </div>
+  </div>
+</header>
+
+<div class="bar"><div class="bar-in">
+  <div class="seg" id="vseg">
+    <button data-v="1">Вариант 1<small>два дня, ночёвки дома</small></button>
+    <button data-v="2">Вариант 2<small>ночь в Нафплионе</small></button>
+  </div>
+  <div class="seg days" id="dseg">
+    <button data-d="0">Вт, 17 ноября</button>
+    <button data-d="1">Ср, 18 ноября</button>
+  </div>
+</div></div>
+
+<main>
+  <section class="intro" id="intro"></section>
+  <div id="map"></div>
+  <p class="mapnote">Линия маршрута схематичная — для точной навигации нажимайте «Вести сюда» в карточке. Номера на карте совпадают с номерами остановок.</p>
+  <section class="tl" id="tl"></section>
+
+  <section class="plan" id="plan"></section>
+
+  <h2 class="sec">Полезно знать</h2>
+  <div class="grid">
+    <div class="note"><h3>Машина</h3><ul>
+      <li><b>Ничего ещё не забронировано.</b> Варианты: <a href="https://www.hertz.gr/en/car-rental/fleet/cabrio-rental-cars/" target="_blank" rel="noopener">Hertz, Syngrou 25</a> (Mini Cooper Cabrio, автомат — но категория «или аналог») и <a href="https://kkmobilityrentals.com/en/point/car-rental-in-athens/" target="_blank" rel="noopener">KKMobility</a> с доставкой по Афинам.</li>
+      <li>Просите письменно подтвердить именно Mini Cabrio до оплаты.</li>
+      <li>При получении: снять на видео кузов и диски, проверить, как открывается крыша, уровень топлива, уточнить залог и тип карты.</li>
+      <li>Вернуть с тем же уровнем топлива — заправка по пути обратно, не в центре.</li>
+    </ul></div>
+    <div class="note"><h3>Дорога</h3><ul>
+      <li><b>17 ноября</b> в центре Афин меняют движение из-за памятных мероприятий (<a href="https://www.oasa.gr/wp-content/uploads/2026/11/%CE%A0%CE%9F%CE%9B%CE%A5%CE%A4%CE%95%CE%A7%CE%9D%CE%95%CE%99%CE%9F-53%CE%B7.pdf" target="_blank" rel="noopener">уведомление OASA</a>). Уезжайте утром, возвращайтесь по Сингру, не через центр.</li>
+      <li>На трассе Афины — Коринф — Нафплион есть платные участки: держите карту или несколько евро мелочью.</li>
+      <li>Темнеет рано: после 17:30 дорога уже ночная. Серпантин у Суниона и Эпидавра лучше проехать засветло.</li>
+      <li>С открытой крышей на трассе холодно даже при +22° — шарф, ветровка, резинка для волос, крем от солнца.</li>
+    </ul></div>
+    <div class="note"><h3>С собой</h3><ul>
+      <li>Купальник, полотенце и шлёпанцы — для озера Вульягмени.</li>
+      <li>Удобная обувь: Паламиди и Эпидавр — это камень и ступени.</li>
+      <li>Вода, тёплый слой на вечер (на Сунионе ветер).</li>
+      <li>Зарядка для телефона в машину и держатель.</li>
+    </ul></div>
+    <div class="note"><h3>Билеты и часы</h3><ul>
+      <li><a href="https://lakevouliagmeni.gr/faq/" target="_blank" rel="noopener">Озеро Вульягмени</a>: зимой 08:30–16:30; цена входа на ноябрь не подтверждена (летом 2025 было €17–19).</li>
+      <li><a href="https://www.hh.gr/en/destinations/sounion/" target="_blank" rel="noopener">Сунион</a>: до заката, €20.</li>
+      <li><a href="https://www.visitgreece.gr/en/experiences/culture/fortifications/palamidi" target="_blank" rel="noopener">Паламиди</a>: в ноябре до 15:30, €20.</li>
+      <li><a href="https://www.hh.gr/en/destinations/epidaurus-asclepius-sanctuary/" target="_blank" rel="noopener">Эпидавр</a>: 08:00–17:00, €20 (театр, святилище, музей).</li>
+      <li>Рестораны: в ноябре часть мест работает по сокращённому графику — перед выездом откройте точку на карте и проверьте часы.</li>
+    </ul></div>
+  </div>
+
+  <footer>
+    <p>Прогноз погоды — по состоянию на 16 ноября; время в пути ориентировочное. Места для еды подобраны по путеводителям <a href="https://www.thisisathens.org/restaurants/aperanto-galazio" target="_blank" rel="noopener">This is Athens</a>, <a href="https://greektriplanner.me/blog/best-restaurants-in-nafplio" target="_blank" rel="noopener">Greek Trip Planner</a>, <a href="https://discovernafplio.gr/en/listings/cafebars/aktaion-mare" target="_blank" rel="noopener">Discover Nafplio</a> и др.; столики не бронировались.</p>
+    <p id="credits"></p>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+"use strict";
+var IMG=function(t,w){return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(t)+"?width="+(w||1200);};
+var FILE=function(t){return "https://commons.wikimedia.org/wiki/File:"+encodeURIComponent(t.replace(/ /g,"_"));};
+var P={ // photos: [file title, author]
+  sounion:["Temple of Poseidon at sunset 2.jpg","Oleksandr Troitskyi"],
+  cape:["Cape Sounion and temple of Poseidon.jpg","GeorgeKokkos"],
+  lake:["Vouliagmeni lake.jpg","GeorgeBRAINiac"],
+  lake2:["Vouliagmenis lake 2.JPG","C messier"],
+  canal:["Vessel tugged through Corinth canal.JPG","FocalPoint"],
+  canalair:["Corinth Canal Greece aerial view.jpg","Moroder"],
+  palamidi:["View from the castle of Nafplio.jpg","Annatsach"],
+  nafview:["Nafplio, Peloponnese.jpg","Girlyn Mendoza"],
+  bourtzi:["Bourtzi - Nafplio (16318352926).jpg","V4lerios"],
+  bourtzi2:["Nafplio, Akronauplia 01.jpg","Stolbovsky"],
+  street:["2007 Greece Nafplion street 04.jpg","Wikimedia Commons"],
+  epi:["Theatre of Epidaurus OLC.jpg","Olecorre"],
+  palaia:["Palea-Epidavros.jpg","David Gavin"]
+};
+var C={ // coordinates
+  ath:[37.9662,23.7288], lake:[37.8078,23.7857], lim:[37.8012,23.7968], vark:[37.8172,23.8052],
+  saron:[37.7450,23.9100], anav:[37.7280,23.9450], legr:[37.6650,24.0000], sou:[37.6502,24.0246],
+  canal:[37.9272,22.9941], acor:[37.9061,22.8790], pal:[37.5617,22.8050], naf:[37.5660,22.7965],
+  bour:[37.5693,22.7903], arv:[37.5615,22.7985], epi:[37.5961,23.0792], pe:[37.6360,23.1570]
+};
+var ROAD={
+  riv:[C.ath,[37.9300,23.7000],[37.8650,23.7450],C.lake,C.lim,C.vark,[37.7900,23.8600],C.saron,C.anav,C.legr,C.sou],
+  toNaf:[C.ath,[38.0400,23.5400],[37.9950,23.3450],[37.9650,23.2000],C.canal,[37.8500,22.8000],[37.7800,22.7200],[37.6330,22.7290],C.naf],
+  viaEpi:[C.naf,[37.6120,22.9800],C.epi,C.pe,[37.6750,23.1350],[37.7800,23.0700],[37.9150,23.0000],C.canal,[37.9650,23.2000],[37.9950,23.3450],[38.0400,23.5400],C.ath]
+};
+function M(q){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
+function NAV(c){return "https://www.google.com/maps/dir/?api=1&travelmode=driving&destination="+c[0]+","+c[1];}
+
+/* ---------- еда ---------- */
+var E={
+ bAth:{t:"Завтрак в Афинах",s:"Кукаки, рядом со стартом. Либо сесть, либо взять с собой в машину.",o:[
+  {n:"Feelings",k:"пекарня-бранч",d:"Микропекарня с завтраками и бранчем; отдельная стойка с выпечкой навынос.",q:"Feelings Koukaki Athens"},
+  {n:"Mama Psomi",k:"с собой",d:"Открывается рано: свежие пироги и круассаны — идеальный вариант съесть уже у моря.",q:"Mama Psomi Koukaki Athens"},
+  {n:"Bel Ray",k:"кафе",d:"Классика района в бывшей автомойке: кофе, яйца, сэндвичи, терраса.",q:"Bel Ray Koukaki Athens"},
+  {n:"Little Tree Books & Coffee",k:"тихо",d:"Книжное кафе под Акрополем — спокойный кофе и что-нибудь лёгкое.",q:"Little Tree Books and Coffee Athens"}]},
+ lRiv:{t:"Обед у воды",s:"После купания. Все варианты — на берегу между Вульягмени и Варкизой.",o:[
+  {n:"Aperanto Galazio",k:"рыбная таверна · €€",d:"Прямо на пляже Варкизы при яхт-клубе: надёжно, недорого, ноги почти в песке.",q:"Aperanto Galazio NAOBB Varkiza"},
+  {n:"Ithaki",k:"вид со скалы · €€€€",d:"Рыбный ресторан над бухтой Вульягмени — красиво и дорого. Зимой график сокращён, звоните заранее.",q:"Ithaki restaurant Vouliagmeni"},
+  {n:"Kastelorizo",k:"рыба · €€€",d:"У начала набережной Варкизы: свежая рыба и морепродукты, чуть наряднее таверны.",q:"Kastelorizo Varkiza"},
+  {n:"Ресторан на озере",k:"не уезжая",d:"Кафе-ресторан прямо на территории озера: поесть в халате с видом на скалу и не терять время.",q:"Lake Vouliagmeni restaurant"}]},
+ dAth1:{t:"Ужин",s:"Либо рыба у моря сразу после заката, либо уже дома в Кукаки.",o:[
+  {n:"Elias Fish Taverna",k:"у храма",d:"Рыбная таверна в бухте под мысом Сунион: храм над головой, осьминог на гриле. Ехать домой потом в темноте.",q:"Elias fish tavern Sounio"},
+  {n:"Fabrica tou Efrosinou",k:"Кукаки · €€",d:"Сезонная греческая кухня из продуктов маленьких ферм и натуральные вина. Лучше бронировать.",q:"Fabrica tou Efrosinou Athens"},
+  {n:"Mani Mani",k:"Кукаки · €€",d:"Кухня полуострова Мани в старом особняке: спокойно, вкусно, по-взрослому.",q:"Mani Mani restaurant Athens"}]},
+ bRoad:{t:"Завтрак в дорогу",s:"Выезд в 08:30 — выберите, где будет первый кофе.",o:[
+  {n:"Mama Psomi — с собой",k:"быстро",d:"Пироги и кофе навынос, съесть на смотровой у канала.",q:"Mama Psomi Koukaki Athens"},
+  {n:"Кофе у Коринфского канала",k:"по пути",d:"У старого моста на Истме ряд кафе и сувлачных — короткая остановка с видом.",q:"Isthmos Corinth canal cafe"},
+  {n:"Поздний завтрак в Нафплионе",k:"Aktaion",d:"Дотерпеть до набережной: кафе с 1955 года, «греческий» завтрак с видом на Бурдзи.",q:"Aktaion Nafplio"}]},
+ lNaf:{t:"Обед в Нафплионе",s:"После крепости спускайтесь в старый город.",o:[
+  {n:"To Omorfo Tavernaki",k:"таверна · €€",d:"Улица Стайкопулу: настоящая таверна с характером — запечённое мясо, долма, домашнее вино.",q:"To Omorfo Tavernaki Nafplio"},
+  {n:"Alaloum",k:"Пелопоннес · €€",d:"Большие порции местной кухни на маленькой площади в старом городе.",q:"Alaloum Nafplio"},
+  {n:"Savouras",k:"рыба · €€€",d:"Рыбная таверна у воды на Бубулинас: витрина с уловом, простая подача.",q:"Savouras Nafplio"},
+  {n:"Pidalio",k:"как местные · €€",d:"В «новом» городе, куда ходят сами жители; честные цены. Вт — выходной, в среду открыто.",q:"Pidalio Nafplio",only:"wed"},
+  {n:"Aiolos",k:"мезе · €€",d:"Современная традиционная кухня в переулке: взять много закусок на двоих.",q:"Aiolos Nafplio"}]},
+ cNaf:{t:"Кофе и сладкое с видом",s:"Пауза между улочками и набережной.",o:[
+  {n:"Kontogiorgos",k:"вид на Бурдзи",d:"Набережная Акти Миаули: капучино и крепость на воде прямо перед вами.",q:"Kontogiorgos cafe Nafplio"},
+  {n:"Xenon",k:"площадь Синтагма",d:"Кафе с деревянным интерьером на главной площади — смотреть на жизнь города.",q:"Xenon cafe Nafplio"},
+  {n:"Antica Gelateria di Roma",k:"мороженое",d:"Итальянское джелато, которое в Нафплионе считают обязательным.",q:"Antica Gelateria di Roma Nafplio"}]},
+ dAth2:{t:"Ужин в Афинах",s:"После возврата машины — пешком в своём районе.",o:[
+  {n:"Fabrica tou Efrosinou",k:"Кукаки · €€",d:"Сезонная греческая кухня и натуральные вина. Лучше бронировать.",q:"Fabrica tou Efrosinou Athens"},
+  {n:"Mani Mani",k:"Кукаки · €€",d:"Кухня Мани в старом особняке.",q:"Mani Mani restaurant Athens"},
+  {n:"Лёгкий вечер дома",k:"без планов",d:"Пекарня или сувлаки по пути — после 4–5 часов за рулём это тоже хороший выбор."}]},
+ dNaf:{t:"Ужин в Нафплионе",s:"Главное удовольствие варианта с ночёвкой — никуда не ехать.",o:[
+  {n:"Wild Duck",k:"современная · €€€",d:"Самая интересная кухня старого города: продукты Пелопоннеса, сильная винная карта. Бронировать.",q:"Wild Duck Nafplio"},
+  {n:"Paleo Archontiko",k:"таверна в особняке · €€",d:"Особняк XIX века, самая атмосферная традиционная комната в городе.",q:"Paleo Archontiko Nafplio"},
+  {n:"Savouras",k:"рыба · €€€",d:"Рыбная таверна у воды: выбрать рыбу с витрины.",q:"Savouras Nafplio"},
+  {n:"Alaloum",k:"Пелопоннес · €€",d:"Местная кухня большими порциями.",q:"Alaloum Nafplio"}]},
+ bNaf:{t:"Завтрак без спешки",s:"Выезд к Эпидавру около 09:50.",o:[
+  {n:"Aktaion",k:"с 07:30",d:"Кафе с 1955 года на набережной: «греческий» завтрак, омлеты, вид на Бурдзи.",q:"Aktaion Nafplio"},
+  {n:"Iliostasio",k:"вид на порт",d:"Хороший кофе, свежий апельсиновый сок и сытный завтрак напротив крепости.",q:"Iliostasio Nafplio"},
+  {n:"Xenon",k:"площадь",d:"Завтрак на площади Синтагма, пока город просыпается.",q:"Xenon cafe Nafplio"},
+  {n:"Завтрак в отеле",k:"проще всего",d:"Если отель с террасой — не усложняйте."}]},
+ lEpi:{t:"Обед у гавани",s:"Palaia Epidavros — 20 минут от театра. В ноябре открыты не все таверны: загляните на карту заранее.",o:[
+  {n:"Taverna Poseidon",k:"на набережной",d:"Традиционная таверна прямо у старой рыбацкой гавани.",q:"Taverna Poseidon Palaia Epidavros"},
+  {n:"Mouria",k:"у моря",d:"Греческая кухня и рыба на самой кромке воды.",q:"Mouria Palaia Epidavros"},
+  {n:"Что открыто у воды",k:"в моменте",d:"Пройти вдоль гавани и сесть там, где сидят местные и пахнет грилем.",q:"restaurants Palaia Epidavros harbour"}]}
+};
+
+/* ---------- остановки ---------- */
+var S={
+ car:{h:"Получить машину",c:C.ath,ph:"cape",tx:"Заберите Mini, откройте крышу и сразу уходите на юг по проспекту Сингру — к морю.",
+  look:["Снимите машину на видео по кругу, включая диски и салон","Проверьте, как складывается крыша и где кнопка","17 ноября в центре перекрытия — не откладывайте выезд"],
+  info:["Hertz, Syngrou 25 или доставка KKMobility","не забронировано"],site:"https://www.hertz.gr/en/car-rental/locations-attractions-routes/car-rental-athens/"},
+ lake:{h:"Озеро Вульягмени",c:C.lake,ph:"lake",tx:"Тёплое солоноватое озеро под отвесной скалой: вода круглый год около 22–29°, плавать можно и в ноябре.",
+  look:["Отвесная стена и свод пещеры — озеро образовалось, когда её потолок обрушился","Рыбки гарра руфа: постойте неподвижно на мелководье — будет бесплатный пилинг","Заплывите к дальней стене: вода там заметно темнее и глубже","После купания — лежак на солнце, это лучшая часть"],
+  info:["зимой 08:30–16:30","вход ≈ €17–19 (уточнить)","парковка у входа","≈ 35–40 мин от центра"],site:"https://lakevouliagmeni.gr/faq/"},
+ coast:{h:"Дорога вдоль моря",c:C.saron,ph:"lake2",tx:"Главный отрезок для кабриолета: Варкиза → Саронида → Анависсос → Легрена. Море всё время справа, не спешите.",
+  look:["Лиманакья сразу за Вульягмени — бухточки со скалами, есть карманы для остановки","После Сарониды дорога пустеет и идёт серпантином над водой","За Легреной в какой-то момент храм появляется на мысу впереди — лучший кадр из машины"],
+  info:["≈ 45 км, 50–60 мин без остановок","заправка в Варкизе или Анависсосе"]},
+ sou:{h:"Храм Посейдона, Сунион",c:C.sou,ph:"sounion",tx:"Мраморные колонны V века до н.э. на краю обрыва, под ними — Эгейское море. Приезжайте за час до заката.",
+  look:["Автограф Байрона, вырезанный на одной из колонн (ищите с восточной стороны, за ограждением)","По легенде, отсюда бросился в море царь Эгей — отсюда «Эгейское»","Колонны тоньше обычных дорических: так они казались выше с моря","Лучшее место на закате — западный склон ниже храма, колонны становятся медовыми","Закат около 17:10, комплекс закрывают сразу после — и становится ветрено"],
+  info:["открыт до заката","билет €20","кафе с видом у входа","обратно ≈ 1 ч 15 мин"],site:"https://www.hh.gr/en/destinations/sounion/"},
+ home:{h:"Домой",c:C.ath,ph:"cape",tx:"Обратно по той же приморской дороге или быстрее через Лаврио и трассу. Машина ночует у вас.",
+  look:["Заранее посмотрите, где парковаться на ночь: в Кукаки с этим туго","Не оставляйте вещи на виду в кабриолете"],info:["≈ 1 ч 15 мин","дома к 19:15–20:00"]},
+ canal:{h:"Коринфский канал",c:C.canal,ph:"canal",tx:"Щель в скале длиной 6,3 км и глубиной около 80 метров. Остановка на 15–20 минут — и дальше.",
+  look:["Выйдите на пешеходную часть старого моста и посмотрите строго вниз","Канал начинал копать ещё Нерон в 67 году, закончили только в 1893-м","Если повезёт — внизу буксир ведёт судно: борта проходят в паре метров от стен"],
+  info:["≈ 1 ч от Афин","парковка у старого моста","бесплатно"]},
+ pal:{h:"Крепость Паламиди",c:C.pal,ph:"palamidi",tx:"Венецианская крепость на высоте 216 м: бастионы, а под ногами — черепичные крыши Нафплиона и весь Арголидский залив.",
+  look:["Поднимайтесь на машине к верхнему (восточному) входу — знаменитые «999 ступеней» оставьте для спуска глазами","Бастион Святого Андрея — самая широкая панорама: город, Бурдзи, Акронафплия","Камера-темница, где сидел герой революции Колокотронис","Смотрите на время: в ноябре закрывают в 15:30"],
+  info:["в ноябре до 15:30","билет €20","бесплатная парковка наверху","1–1,5 часа"],site:"https://www.visitgreece.gr/en/experiences/culture/fortifications/palamidi"},
+ town:{h:"Старый город Нафплиона",c:C.naf,ph:"street",tx:"Первая столица независимой Греции: венецианские балконы, бугенвиллея, мраморная площадь и набережная с крепостью на воде.",
+  look:["Площадь Синтагма: венецианский арсенал и старая мечеть на одной площади","Улицы Стайкопулу и Василеос Константину — лавки с комболои (чётками) и керамикой","Набережная Акти Миаули: Бурдзи лучше всего смотрится отсюда","Тропа Арванития вокруг скалы Акронафплии — 15 минут над морем (иногда закрыта из-за камнепадов)"],
+  info:["большая парковка у порта","старый город пешеходный","2–3 часа"]},
+ back1:{h:"Обратно в Афины",c:C.ath,ph:"canalair",tx:"Выехать не позже 16:00: первый час дороги ещё при свете. Заправка — на трассе до въезда в город.",
+  look:["Залить бак до уровня, с которым брали","Сфотографировать приборную панель и машину при сдаче"],info:["≈ 1 ч 50 мин","возврат 19:00–20:00"]},
+ check:{h:"Заселение и отдых",c:C.naf,ph:"bourtzi2",tx:"Оставьте машину у порта, вещи — в отеле, и дайте себе час тишины перед закатом.",
+  look:["Берите отель в старом городе или вплотную к нему — машина не понадобится до утра","Номер с балконом на залив здесь стоит доплаты"],info:["отель не забронирован","парковка у порта"]},
+ sunset:{h:"Закат у моря",c:C.bour,ph:"bourtzi",tx:"Прогулка по набережной и вокруг Акронафплии, когда крепость Бурдзи и горы за заливом розовеют.",
+  look:["Дойдите до маяка в конце мола — Бурдзи оттуда совсем близко","Закат около 17:15, потом зажигают подсветку Паламиди над городом","Аперитив на набережной в этот час — обязательная программа"],info:["16:30–17:30","всё пешком"]},
+ epi:{h:"Античный театр Эпидавра",c:C.epi,ph:"epi",tx:"Самый совершенный театр древнего мира, IV век до н.э., около 14 000 мест среди сосновых холмов.",
+  look:["Встаньте в центр орхестры на круглую плиту и скажите что-нибудь шёпотом — наверху услышат","Поднимитесь на самый верхний ряд: масштаб понимаешь только оттуда","Архитектор — Поликлет Младший; театр был частью святилища Асклепия, древней «лечебницы»","Маленький музей и руины святилища входят в тот же билет"],
+  info:["08:00–17:00","билет €20","≈ 35 мин от Нафплиона","1,5–2 часа"],site:"https://www.hh.gr/en/destinations/epidaurus-asclepius-sanctuary/"},
+ pe:{h:"Гавань Palaia Epidavros",c:C.pe,ph:"palaia",tx:"Тихая рыбацкая бухта в апельсиновых садах. Обед у воды перед дорогой домой.",
+  look:["Апельсины и мандарины на деревьях — в ноябре как раз сезон","Малый театр на полуострове над гаванью","«Затонувший город» — остатки римской виллы под водой у пляжа Gialasi, видно даже с маской у берега"],
+  info:["≈ 20 мин от театра","в ноябре часть таверн закрыта"]},
+ back2:{h:"Обратно вдоль Саронического залива",c:C.ath,ph:"canalair",tx:"Красивая прибрежная дорога на север до Истмии, дальше трасса на Афины. Крышу — открыть.",
+  look:["Первые 40 минут — серпантин над морем, лучший отрезок дня за рулём","Заправка до въезда в Афины, фото машины при сдаче"],info:["≈ 1 ч 50 мин","возврат 18:00–19:00"]}
+};
+
+/* ---------- дополнительные точки ---------- */
+var X={
+ lim:{h:"Бухты Лиманакья",c:C.lim,tx:"+20 минут. Остановиться в кармане над скалами сразу за озером: бирюзовая вода и вид на залив."},
+ lavrio:{h:"Кофе в Сарониде",c:C.saron,tx:"+30 минут. Набережная маленького курорта на полпути — размять ноги и выпить фраппе у воды."},
+ acor:{h:"Акрокоринф",c:C.acor,tx:"+1,5 часа. Огромная крепость на скале над Древним Коринфом. Тогда в Нафплионе останется меньше времени — выбирайте что-то одно."},
+ boat:{h:"Лодка на Бурдзи",c:C.bour,tx:"+1 час. Кораблик из порта к крепости на островке (вход ≈ €7). Зимой ходит не по расписанию — спросите на причале."},
+ arv:{h:"Тропа Арванития",c:C.arv,tx:"+30 минут. Дорожка вокруг скалы над морем от набережной до пляжа Арванития."},
+ small:{h:"Малый театр Эпидавра",c:C.pe,tx:"+20 минут. Камерный античный театр на полуострове над гаванью, обычно почти без людей."}
+};
+
+/* ---------- сценарии ---------- */
+var V={
+ 1:{name:"Два разных дня",days:[
+  {title:"Ривьера и закат на Сунионе",lead:"Купание в тёплом озере, дорога вдоль моря и колонны над водой в закатном свете. Ночуете дома.",
+   facts:["≈ 140 км за день","за рулём ≈ 2,5 ч","закат 17:10"],road:ROAD.riv,
+   items:[["s","car","09:00","09:30"],["e","bAth"],["s","lake","10:30","12:30"],["x","lim"],["e","lRiv"],["s","coast","14:00","16:00"],["x","lavrio"],["s","sou","16:00","17:30"],["e","dAth1"],["s","home","19:15","20:00"]]},
+  {title:"Нафплион и крепость над заливом",lead:"Самый длинный день за рулём — зато самый красивый город Пелопоннеса и панорама с Паламиди.",
+   facts:["≈ 290 км за день","за рулём 4–5 ч","выезд 08:30"],road:ROAD.toNaf,
+   items:[["e","bRoad"],["s","canal","09:40","10:00"],["x","acor"],["s","pal","11:30","13:00"],["e","lNaf"],["s","town","13:00","16:00"],["e","cNaf"],["x","boat"],["x","arv"],["s","back1","16:00","19:30"],["e","dAth2"]]}
+ ]},
+ 2:{name:"Ночь в Нафплионе",days:[
+  {title:"Через канал — в Нафплион",lead:"Утром в дорогу, днём крепость, вечером никуда не ехать: закат у моря и ужин в старом городе.",
+   facts:["≈ 145 км","за рулём ≈ 2 ч","+ отель"],road:ROAD.toNaf,
+   items:[["s","car","09:00","09:30"],["e","bAth"],["s","canal","10:15","10:35"],["s","pal","11:45","13:15"],["e","lNaf"],["s","check","14:45","16:15"],["s","sunset","16:30","17:30"],["x","arv"],["e","dNaf"],["s","town","20:30","22:00"]]},
+  {title:"Эпидавр и дорога вдоль моря",lead:"Спокойное утро, великий театр в соснах, обед в рыбацкой гавани и красивая дорога обратно.",
+   facts:["≈ 185 км","за рулём ≈ 3 ч","возврат 18–19"],road:ROAD.viaEpi,
+   items:[["e","bNaf"],["x","boat"],["s","epi","10:30","12:15"],["s","pe","12:45","14:15"],["e","lEpi"],["x","small"],["s","back2","14:30","18:30"],["e","dAth2"]]}
+ ]}
+};
+var DATES=["2026-11-17","2026-11-18"];
+
+/* ---------- состояние ---------- */
+var st={v:1,d:0,pick:{},done:{},ex:{}};
+try{var sv=JSON.parse(localStorage.getItem("athens2")||"null");if(sv&&sv.v){st=sv;st.pick=st.pick||{};st.done=st.done||{};st.ex=st.ex||{};}}catch(e){}
+function save(){try{localStorage.setItem("athens2",JSON.stringify(st));}catch(e){}}
+var today=(function(){var n=new Date();var i=DATES.indexOf(n.getFullYear()+"-"+("0"+(n.getMonth()+1)).slice(-2)+"-"+("0"+n.getDate()).slice(-2));return i;})();
+if(today>=0&&!sv){st.d=today;}
+function key(k){return st.v+"."+st.d+"."+k;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function isNow(a,b){if(today!==st.d)return false;var n=new Date(),m=n.getHours()*60+n.getMinutes();function t(x){var p=x.split(":");return +p[0]*60+ +p[1];}return m>=t(a)&&m<t(b);}
+function photo(k,w){var p=P[k];return '<img loading="lazy" src="'+IMG(p[0],w||1000)+'" alt="" onerror="this.remove()"><a class="cr" href="'+FILE(p[0])+'" target="_blank" rel="noopener">фото: '+esc(p[1])+'</a>';}
+
+/* ---------- карта ---------- */
+var map=null,layer=null;
+function initMap(){
+  if(!window.L){document.getElementById("map").style.display="none";return;}
+  map=L.map("map",{scrollWheelZoom:false,attributionControl:true});
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:17,attribution:"© OpenStreetMap"}).addTo(map);
+  layer=L.layerGroup().addTo(map);
+}
+function drawMap(day){
+  if(!map)return;layer.clearLayers();
+  var line=L.polyline(day.road,{color:"#c8553d",weight:4,opacity:.85,dashArray:"2 9",lineCap:"round"}).addTo(layer);
+  var n=0;
+  day.items.forEach(function(it){
+    if(it[0]==="s"){n++;var s=S[it[1]];
+      L.marker(s.c,{icon:L.divIcon({className:"",html:'<div class="pin"><b>'+n+'</b></div>',iconSize:[30,30],iconAnchor:[6,30]})}).addTo(layer)
+       .bindPopup("<b>"+esc(s.h)+"</b><br>"+it[2]+"–"+it[3]).on("click",(function(id){return function(){var el=document.getElementById("s-"+id);if(el)el.scrollIntoView({behavior:"smooth",block:"center"});};})(it[1]));
+    } else if(it[0]==="x"&&st.ex[key(it[1])]){var x=X[it[1]];
+      L.marker(x.c,{icon:L.divIcon({className:"",html:'<div class="pin opt"><b>+</b></div>',iconSize:[30,30],iconAnchor:[6,30]})}).addTo(layer).bindPopup("<b>"+esc(x.h)+"</b>");
+    }
+  });
+  map.fitBounds(line.getBounds(),{padding:[26,26]});
+}
+
+/* ---------- отрисовка ---------- */
+function render(){
+  var sc=V[st.v],day=sc.days[st.d];
+  [].forEach.call(document.querySelectorAll("#vseg button"),function(b){b.classList.toggle("on",+b.dataset.v===st.v);});
+  [].forEach.call(document.querySelectorAll("#dseg button"),function(b){b.classList.toggle("on",+b.dataset.d===st.d);});
+  document.getElementById("intro").innerHTML='<div class="kicker" style="color:var(--terra)">Вариант '+st.v+' · '+esc(sc.name)+' · день '+(st.d+1)+'</div><h2>'+esc(day.title)+'</h2><p>'+esc(day.lead)+'</p><div class="facts">'+day.facts.map(function(f){return '<span class="fact">'+esc(f)+'</span>';}).join("")+'</div>';
+  var h="",n=0,wed=st.d===1;
+  day.items.forEach(function(it){
+    if(it[0]==="s"){n++;var s=S[it[1]],k=key("s."+it[1]),now=isNow(it[2],it[3]),dn=!!st.done[k];
+      h+='<article class="stop'+(now?" now":"")+(dn?" done":"")+'" id="s-'+it[1]+'" data-n="'+n+'"><div class="ph">'+photo(s.ph)+'<span class="t">'+it[2]+' – '+it[3]+'</span>'+(now?'<span class="nowb">сейчас</span>':'')+'</div><div class="bd"><h3>'+esc(s.h)+'</h3><p>'+esc(s.tx)+'</p><div class="lk">На что обратить внимание</div><ul class="look">'+s.look.map(function(l){return "<li>"+esc(l)+"</li>";}).join("")+'</ul><div class="info">'+s.info.map(function(i){return "<span>"+esc(i)+"</span>";}).join("")+'</div><div class="acts"><a class="btn" href="'+NAV(s.c)+'" target="_blank" rel="noopener">➤ Вести сюда</a>'+(s.site?'<a class="btn ghost" href="'+s.site+'" target="_blank" rel="noopener">Официальный сайт</a>':'')+'<button class="btn ok" data-done="'+k+'">'+(dn?"✓ Были":"Отметить")+'</button></div></div></article>';
+    } else if(it[0]==="e"){var e=E[it[1]],pk=key("e."+it[1]),sel=st.pick[pk];
+      h+='<div class="pick"><h4>'+esc(e.t)+'</h4><div class="sub">'+esc(e.s)+'</div><div class="opts">';
+      e.o.forEach(function(o,i){ if(o.only==="wed"&&!wed)return;
+        h+='<div class="opt'+(sel===i?" on":"")+'" role="button" tabindex="0" data-pick="'+pk+'" data-i="'+i+'"><div class="nm"><span>'+esc(o.n)+'</span><i>'+esc(o.k)+'</i></div><div class="ds">'+esc(o.d)+'</div><div class="ft">'+(o.q?'<a href="'+M(o.q)+'" target="_blank" rel="noopener" data-stop="1">На карте и часы работы ↗</a>':'<span></span>')+'<em>'+(sel===i?"✓ выбрано":"выбрать")+'</em></div></div>';});
+      h+='</div></div>';
+    } else {var x=X[it[1]],xk=key(it[1]),on=!!st.ex[xk];
+      h+='<div class="extra'+(on?" on":"")+'"><h4>Если есть настроение: '+esc(x.h)+'</h4><p>'+esc(x.tx)+'</p><div class="acts" style="margin:0"><button class="btn ok" data-ex="'+xk+'" style="'+(on?"background:var(--olive);color:#fff":"")+'">'+(on?"✓ Добавлено в план":"+ Добавить в план")+'</button><a class="btn ghost" href="'+NAV(x.c)+'" target="_blank" rel="noopener">➤ Вести сюда</a></div></div>';
+    }
+  });
+  document.getElementById("tl").innerHTML=h;
+  renderPlan(day);drawMap(day);
+}
+function renderPlan(day){
+  var li="",way=[],last=null;
+  day.items.forEach(function(it){
+    if(it[0]==="s"){var s=S[it[1]];li+="<li>"+esc(s.h)+" <span>"+it[2]+"</span></li>";way.push(s.c.join(","));last=s.c.join(",");}
+    else if(it[0]==="e"){var e=E[it[1]],i=st.pick[key("e."+it[1])];
+      if(i!=null&&e.o[i]){li+='<li class="eat">'+esc(e.t)+": "+esc(e.o[i].n)+"</li>";if(e.o[i].q){way.push(e.o[i].q);}}
+      else li+='<li class="eat" style="opacity:.55">'+esc(e.t)+": ещё не выбрано</li>";}
+    else if(st.ex[key(it[1])]){var x=X[it[1]];li+="<li>+ "+esc(x.h)+"</li>";way.push(x.c.join(","));}
+  });
+  var dest=way.pop(),mid=way.slice(-9);
+  var url="https://www.google.com/maps/dir/?api=1&travelmode=driving&destination="+encodeURIComponent(dest||last)+(mid.length?"&waypoints="+encodeURIComponent(mid.join("|")):"");
+  document.getElementById("plan").innerHTML='<div class="kicker" style="color:#ffd9a0">Мой план · '+(st.d===0?"вторник, 17 ноября":"среда, 18 ноября")+'</div><h2>'+esc(day.title)+'</h2><ol>'+li+'</ol><div class="acts"><a class="btn" href="'+url+'" target="_blank" rel="noopener">Открыть весь день в Google Maps</a><button class="btn ghost" id="reset">Сбросить выбор</button></div>';
+}
+
+document.addEventListener("click",function(ev){
+  var t=ev.target;
+  if(t.closest("[data-stop]"))return;
+  var b=t.closest("#vseg button");if(b){st.v=+b.dataset.v;save();render();return;}
+  b=t.closest("#dseg button");if(b){st.d=+b.dataset.d;save();render();window.scrollTo({top:document.getElementById("intro").offsetTop-110,behavior:"smooth"});return;}
+  b=t.closest("[data-pick]");if(b){var k=b.dataset.pick,i=+b.dataset.i;if(st.pick[k]===i)delete st.pick[k];else st.pick[k]=i;save();var y=window.scrollY;render();window.scrollTo(0,y);return;}
+  b=t.closest("[data-done]");if(b){k=b.dataset.done;if(st.done[k])delete st.done[k];else st.done[k]=1;save();y=window.scrollY;render();window.scrollTo(0,y);return;}
+  b=t.closest("[data-ex]");if(b){k=b.dataset.ex;if(st.ex[k])delete st.ex[k];else st.ex[k]=1;save();y=window.scrollY;render();window.scrollTo(0,y);return;}
+  if(t.id==="reset"){st.pick={};st.done={};st.ex={};save();render();}
+});
+document.addEventListener("keydown",function(ev){if((ev.key==="Enter"||ev.key===" ")&&ev.target.matches&&ev.target.matches("[data-pick]")){ev.preventDefault();ev.target.click();}});
+
+var hi=document.getElementById("heroimg");hi.onerror=function(){hi.remove();};hi.src=IMG(P.sounion[0],1800);
+document.getElementById("credits").innerHTML="Фотографии — Wikimedia Commons (свободные лицензии, авторы и условия по ссылке на каждом снимке): "+Object.keys(P).map(function(k){return '<a href="'+FILE(P[k][0])+'" target="_blank" rel="noopener">'+esc(P[k][1])+'</a>';}).join(", ")+". Карта © OpenStreetMap.";
+initMap();render();
+})();
+</script>
+</body>
+</html>
